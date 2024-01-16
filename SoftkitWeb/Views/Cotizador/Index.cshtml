@@ -28,9 +28,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-BC"><i class="fas fa-search-plus"></i> Buscar Cotización</button>
-                            <button type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nueva Cotización</button>
-                            <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-VR"><i class="far fa-eye"></i> Ver Reglas</button>
+                            <button id="btnBC" type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-BC"><i class="fas fa-search-plus"></i> Buscar Cotización</button>
+                            <button id="btnNC" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nueva Cotización</button>
+                            <button id="btnVR" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-VR"><i class="far fa-eye"></i> Ver Reglas</button>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-A"><i class="fas fa-search-plus"></i> Buscar Cliente</button>
+                                    <button id="btnCB" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-BCL"><i class="fas fa-search-plus"></i> Buscar Cliente</button>
                                 </div>
                             </div>
                         </div>
@@ -61,20 +61,20 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nombre:</label>
-                                    <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                    <label for="txtNombreDC">Nombre:</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNombreDC" readonly>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Apellidos:</label>
-                                    <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                    <label for="txtApellidosDC">Apellidos:</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtApellidosDC" readonly>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Correo:</label>
-                                    <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                    <label for="txtCorreoDC">Correo:</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtCorreoDC" readonly>
                                 </div>
                             </div>
                         </div>
@@ -82,8 +82,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Agregar</button>
-                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Quitar</button>
+                                    <button id="btnAgregar" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-AP"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                    <button id="btnQuitar" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Quitar</button>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body table-responsive p-0" style="height: 300px;">
-                                        <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                        <table id="tablaDC" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>Item</th>
@@ -153,12 +153,9 @@
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -180,7 +177,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <button class="btn btn-sm btn-success"><i class="far fa-save"></i> Guardar Cotización</button>
+                                    <button id="btnGC" class="btn btn-sm btn-success"><i class="far fa-save"></i> Guardar Cotización</button>
                                 </div>
                             </div>
                         </div>
@@ -188,10 +185,10 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Fecha:</label>
-                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                        <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#reservationdate" readonly>
-                                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                    <label for="txtFechaPS">Fecha:</label>
+                                    <div class="input-group date" id="fechaPS" data-target-input="nearest">
+                                        <input id="txtFechaPS" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaPS" readonly>
+                                        <div class="input-group-append" data-target="#fechaPS" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
                                     </div>
@@ -199,8 +196,8 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Moneda:</label>
-                                    <select class="form-control select2" style="width: 100%;">
+                                    <label for="cboMoneda">Moneda:</label>
+                                    <select id="cboMoneda" class="form-control select2" style="width: 100%;">
                                         <option selected="selected">MN</option>
                                         <option>MN</option>
                                     </select>
@@ -212,7 +209,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body table-responsive p-0" style="height: 300px;">
-                                        <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                        <table id="tablaPS" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>Valor Venta</th>
@@ -227,16 +224,13 @@
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
 
-                <!-- Proveedor  -->
+                <!-- Proveedores  -->
                 <div class="card card-default">
                     <div class="card-header">
                         <h3 class="card-title">Proveedores</h3>
@@ -258,7 +252,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Dealer</button>
+                                        <button id="btnBD" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Dealer</button>
                                     </div>
                                 </div>
                             </div>
@@ -266,16 +260,16 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nombre:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtNombrePD">Nombre:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtNombrePD" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Fecha:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#reservationdate" readonly>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label for="txtFechaPD">Fecha:</label>
+                                        <div class="input-group date" id="fechaPD" data-target-input="nearest">
+                                            <input id="txtFechaPD" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaPD" readonly>
+                                            <div class="input-group-append" data-target="#fechaPD" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -283,8 +277,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Moneda:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtMonedaPD">Moneda:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtMonedaPD" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -293,7 +287,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                            <table id="tablaPD" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Precio Venta</th>
@@ -310,12 +304,9 @@
                                                 </tbody>
                                             </table>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
 
                         <!-- Proveedor 1  -->
@@ -324,7 +315,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Provedor 1</button>
+                                        <button id="btnBP1" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Provedor 1</button>
                                     </div>
                                 </div>
                             </div>
@@ -332,16 +323,16 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nombre:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtNombreP1">Nombre:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtNombreP1" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Fecha:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#reservationdate" readonly>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label for="txtFechaP1">Fecha:</label>
+                                        <div class="input-group date" id="fechaP1" data-target-input="nearest">
+                                            <input id="txtFechaP1" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP1" readonly>
+                                            <div class="input-group-append" data-target="#fechaP1" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -349,8 +340,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Moneda:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtMonedaP1">Moneda:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtMonedaP1" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -359,7 +350,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                            <table id="tablaP1" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Precio Venta</th>
@@ -376,9 +367,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -389,7 +378,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 2</button>
+                                        <button id="btnBP2" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 2</button>
                                     </div>
                                 </div>
                             </div>
@@ -397,16 +386,16 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nombre:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtNombreP2">Nombre:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtNombreP2" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Fecha:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#reservationdate" readonly>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label for="txtFechaP2">Fecha:</label>
+                                        <div class="input-group date" id="fechaP2" data-target-input="nearest">
+                                            <input id="txtFechaP2" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP2" readonly>
+                                            <div class="input-group-append" data-target="#fechaP2" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -414,8 +403,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Moneda:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtMonedaP2">Moneda:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtMonedaP2" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -424,7 +413,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                            <table id="tablaP2" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Precio Venta</th>
@@ -454,7 +443,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 3</button>
+                                        <button id="btnBP3" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 3</button>
                                     </div>
                                 </div>
                             </div>
@@ -462,16 +451,16 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nombre:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtNombreP3">Nombre:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtNombreP3" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Fecha:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#reservationdate" readonly>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label for="txtFechaP3">Fecha:</label>
+                                        <div class="input-group date" id="fechaP3" data-target-input="nearest">
+                                            <input id="txtFechaP3" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP3" readonly>
+                                            <div class="input-group-append" data-target="#fechaP3" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -479,8 +468,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Moneda:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtMonedaP3">Moneda:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtMonedaP3" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -489,7 +478,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                            <table id="tablaP3" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Precio Venta</th>
@@ -519,7 +508,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 4</button>
+                                        <button id="btnBP4" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 4</button>
                                     </div>
                                 </div>
                             </div>
@@ -527,16 +516,16 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nombre:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtNombreP4">Nombre:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtNombreP4" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Fecha:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#reservationdate" readonly>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label for="txtFechaP4">Fecha:</label>
+                                        <div class="input-group date" id="fechaP4" data-target-input="nearest">
+                                            <input id="txtFechaP4" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP4" readonly>
+                                            <div class="input-group-append" data-target="#fechaP4" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -544,8 +533,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Moneda:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtMonedaP4">Moneda:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtMonedaP4" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -554,7 +543,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                            <table id="tablaP4" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Precio Venta</th>
@@ -571,13 +560,10 @@
                                                 </tbody>
                                             </table>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -596,21 +582,23 @@
                         </div>
                     </div>
                     <div class="card-body">
+
+                        <!-- Kardex Venta  -->
                         <div class="callout callout-danger">
                             <h5>Kardex Venta</h5>
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Mon. Prec.</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtMP_KV">Mon. Prec.</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtMP_KV" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>Fecha:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#reservationdate" readonly>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label for="txtFechaKV">Fecha:</label>
+                                        <div class="input-group date" id="fechaKV" data-target-input="nearest">
+                                            <input id="txtFechaKV" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaKV" readonly>
+                                            <div class="input-group-append" data-target="#fechaKV" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -618,8 +606,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Cliente:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtCKV">Cliente:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtCKV" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -627,7 +615,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                            <table id="tablaKV" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Precio Venta</th>
@@ -644,27 +632,27 @@
                                                 </tbody>
                                             </table>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Kardex Cotización  -->
                         <div class="callout callout-info">
                             <h5>Kardex Cotización</h5>
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Mon. Prec.</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtMP_KC">Mon. Prec.</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtMP_KC" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>Fecha:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#reservationdate" readonly>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label for="txtFechaKC">Fecha:</label>
+                                        <div class="input-group date" id="fechaKC" data-target-input="nearest">
+                                            <input id="txtFechaKC" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaKC" readonly>
+                                            <div class="input-group-append" data-target="#fechaKC" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -672,8 +660,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Cliente:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtCKC">Cliente:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtCKC" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -681,7 +669,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                            <table id="tablaKC" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Precio Venta</th>
@@ -704,21 +692,23 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Kardex Nota Ingreso  -->
                         <div class="callout callout-success">
                             <h5>Kardex Nota Ingreso</h5>
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Mon. Prec.</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtMP_KNI">Mon. Prec.</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtMP_KNI" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>Fecha:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#reservationdate" readonly>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                        <label for="txtFechaKNI">Fecha:</label>
+                                        <div class="input-group date" id="fechaKNI" data-target-input="nearest">
+                                            <input id="txtFechaKNI" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaKNI" readonly>
+                                            <div class="input-group-append" data-target="#fechaKNI" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
@@ -726,8 +716,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Proveedor:</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" readonly>
+                                        <label for="txtPKNI">Proveedor:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtPKNI" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -735,7 +725,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                            <table id="tablaKNI" class="table table-head-fixed text-nowrap table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Precio Venta</th>
@@ -752,17 +742,12 @@
                                                 </tbody>
                                             </table>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -782,7 +767,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover ">
+                            <table id="M_Tabla_BC" class="table table-bordered table-hover ">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
@@ -807,7 +792,7 @@
 </div>
 
 <!-- Modal Buscar Cliente -->
-<div class="modal fade" id="modal-BC">
+<div class="modal fade" id="modal-BCL">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -820,8 +805,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Orden:</label>
-                            <select class="form-control select2" style="width: 100%;">
+                            <label for="M_cboOrden">Orden:</label>
+                            <select id="M_cboOrden" class="form-control select2" style="width: 100%;">
                                 <option selected="selected"></option>
                                 <option>MN</option>
                             </select>
@@ -829,8 +814,8 @@
                     </div>
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Buscar:</label>
-                            <input type="text" class="form-control form-control-sm" id="exampleInputEmail1">
+                            <label for="M_txtMBBC">Buscar:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtMBBC">
                         </div>
                     </div>
                 </div>
@@ -838,7 +823,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table id="M_tablaBC" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
@@ -860,19 +845,19 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <div class="form-group">
-                    <button type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nuevo</button>
-                    <button type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
-                    <button type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                    <button id="M_btnNBC" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nuevo</button>
+                    <button id="M_btnEBC" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
+                    <button id="M_btnELBC" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                 </div>
 
-                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Salir</button>
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal"> <i class="fas fa-sign-out-alt"></i> Salir</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Modal Agregar Producto  -->
-<div class="modal fade" id="modal-A">
+<div class="modal fade" id="modal-AP">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -885,33 +870,153 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">&nbsp;</label>
+                            <label for="M_txtAAP" style="visibility: hidden;">Espacio vacio</label>
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-danger"><i class="fas fa-inbox"></i></button>
+                                    <button id="M_btnUAP" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-MA"><i class="fas fa-inbox"></i></button>
                                 </div>
-                                <input type="text" class="form-control form-control-sm">
+                                <input id="M_txtAAP" type="text" class="form-control form-control-sm">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">&nbsp;</label>
-                            <input type="text" class="form-control form-control-sm" id="exampleInputEmail1">
+                            <label for="M_txtA2AP" style="visibility: hidden;">Espacio vacio</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtA2AP">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Cantidad:</label>
-                            <input type="text" class="form-control form-control-sm" id="exampleInputEmail1">
+                            <label for="M_txtCAP">Cantidad:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtCAP">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button id="M_btnGAP" type="button" class="btn btn-sm btn-success" data-dismiss="modal"><i class="fas fa-plus-circle"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Manteminiento de Articulos  -->
+<div class="modal fade" id="modal-MA">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Manteminiento de Articulos</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="M_cboOMA">Orden:</label>
+                            <select id="M_cboOMA" class="form-control select2" style="width: 100%;">
+                                <option selected="selected">Descripción</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="M_txtBMA">Buscar:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtBMA">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="M_btnBMA" style="visibility: hidden;">Espacio vacio</label>
+                            <button id="M_btnBMA" type="button" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="M_checkboxS" style="visibility: hidden;">Espacio vacio</label>
+                            <div class="icheck-primary d-inline">
+                                <input type="checkbox" id="M_checkboxS" checked="">
+                                <label for="M_checkboxS">
+                                    En Stock
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button id="M_btnSMA" type="button" class="btn btn-sm btn-success" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Salir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Manteminiento de Proveedores  -->
+<div class="modal fade" id="modal-MP">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Manteminiento de Proveedores</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="M_cboOMP">Orden:</label>
+                            <select id="M_cboOMP" class="form-control select2" style="width: 100%;">
+                                <option selected="selected"> </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="M_txtBMA">Buscar:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtBMP">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table id="M_Tabla_MP" class="table table-bordered table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Razon Social</th>
+                                        <th>Dirección</th>
+                                        <th>Telefono</th>
+                                        <th>Ruc</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>18/02/2024</td>
+                                        <td>John Doe</td>
+                                        <td>0988787678</td>
+                                        <td>0988787678</td> 
+                                        <td>0988787678</td> 
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal"><i class="fas fa-plus-circle"></i> Guardar</button>
-
+                <div class="form-group">
+                    <button id="M_btnNMP" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nuevo</button>
+                    <button id="M_btnEMP" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
+                    <button id="M_btnELMP" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                </div>
+                  
+                <button id="M_btnSMA" type="button" class="btn btn-sm btn-success" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Salir</button>
             </div>
         </div>
     </div>
@@ -922,21 +1027,6 @@
 
 
 @section Scripts {
+    <script src="~/js/cotizador/cotizador.js"></script>
 
-    <script type="text/javascript">
-
-        $(function () {
-            //Initialize Select2 Elements
-            $('.select2').select2()
-
-            //Date picker
-            $('#reservationdate').datetimepicker({
-                format: 'L'
-            });
-
-
-        });
-    </script>
-    @*    <script src="~/scripts/Administrador/Administrador.js"> </script>
-*@
-    }
+}

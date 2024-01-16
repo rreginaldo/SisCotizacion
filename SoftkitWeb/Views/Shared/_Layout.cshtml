@@ -48,6 +48,8 @@
                 </li>
             </ul>
 
+
+
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
@@ -81,7 +83,7 @@
                             </a>
                             <a class="nav-link" asp-controller="Cotizador" asp-action="Index">
                                 <i class="nav-icon fas fa-chart-line"></i>
-                                 <p>Cotizador Ventas</p>
+                                <p>Cotizador Ventas</p>
                             </a>
                         </li>
                     </ul>
@@ -105,15 +107,19 @@
             <strong>Copyright &copy; 2014-2021 <a href="#">Softwit Web</a>.</strong> All rights reserved.
         </footer>
 
-
+        
+        <partial name="_LayoutModals" />
+          
+ 
     </div>
     <!-- ./wrapper -->
+ 
     <!-- jQuery -->
     <script src="~/lib/adminlte/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="~/lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- overlayScrollbars -->
-    <script src="~/lib/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> 
+    <script src="~/lib/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- Select2 -->
     <script src="~/lib/adminlte/plugins/select2/js/select2.full.min.js"></script>
     <!-- Bootstrap4 Duallistbox -->
@@ -137,6 +143,11 @@
     <!-- AdminLTE App -->
     <script src="~/lib/adminlte/dist/js/adminlte.min.js"></script>
 
+
+    <script type="text/javascript">
+        var baseSiteUrl = '@Url.Content("~/")';
+    </script>
+    <script src="~/js/app.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 

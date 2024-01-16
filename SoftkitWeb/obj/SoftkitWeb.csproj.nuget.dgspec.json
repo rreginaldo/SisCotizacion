@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\softkit\\Downloads\\SoftkitWeb\\SoftkitWeb\\SoftkitWeb\\SoftkitWeb.csproj": {}
+    "D:\\Proyectos Personales\\Proyecto SisCotizacion\\SoftkitWeb\\SoftkitWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\softkit\\Downloads\\SoftkitWeb\\SoftkitWeb\\SoftkitWeb\\SoftkitWeb.csproj": {
+    "D:\\Proyectos Personales\\Proyecto SisCotizacion\\SoftkitWeb\\SoftkitWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\softkit\\Downloads\\SoftkitWeb\\SoftkitWeb\\SoftkitWeb\\SoftkitWeb.csproj",
+        "projectUniqueName": "D:\\Proyectos Personales\\Proyecto SisCotizacion\\SoftkitWeb\\SoftkitWeb.csproj",
         "projectName": "SoftkitWeb",
-        "projectPath": "C:\\Users\\softkit\\Downloads\\SoftkitWeb\\SoftkitWeb\\SoftkitWeb\\SoftkitWeb.csproj",
-        "packagesPath": "C:\\Users\\softkit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\softkit\\Downloads\\SoftkitWeb\\SoftkitWeb\\SoftkitWeb\\obj\\",
+        "projectPath": "D:\\Proyectos Personales\\Proyecto SisCotizacion\\SoftkitWeb\\SoftkitWeb.csproj",
+        "packagesPath": "C:\\Users\\David YC\\.nuget\\packages\\",
+        "outputPath": "D:\\Proyectos Personales\\Proyecto SisCotizacion\\SoftkitWeb\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\softkit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\David YC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

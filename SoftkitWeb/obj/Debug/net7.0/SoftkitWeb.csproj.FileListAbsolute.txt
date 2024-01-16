@@ -1,61 +1,31 @@
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\appsettings.Development.json
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\appsettings.json
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.staticwebassets.runtime.json
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.exe
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.deps.json
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.runtimeconfig.json
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.dll
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.pdb
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.csproj.AssemblyReference.cache
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.GeneratedMSBuildEditorConfig.editorconfig
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.AssemblyInfoInputs.cache
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.AssemblyInfo.cs
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.csproj.CoreCompileInputs.cache
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.MvcApplicationPartsAssemblyInfo.cache
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.RazorAssemblyInfo.cache
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.RazorAssemblyInfo.cs
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.SoftkitWeb.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.build.SoftkitWeb.props
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.SoftkitWeb.props
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.SoftkitWeb.props
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets.build.json
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets.development.json
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\scopedcss\bundle\SoftkitWeb.styles.css
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\scopedcss\projectbundle\SoftkitWeb.bundle.scp.css
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.dll
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\refint\SoftkitWeb.dll
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.pdb
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.genruntimeconfig.cache
-C:\Proyectos BCP\Nueva carpeta\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\ref\SoftkitWeb.dll
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\appsettings.Development.json
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\appsettings.json
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.staticwebassets.runtime.json
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.exe
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.deps.json
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.runtimeconfig.json
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.dll
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.pdb
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.AssemblyInfoInputs.cache
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.AssemblyInfo.cs
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.csproj.CoreCompileInputs.cache
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.RazorAssemblyInfo.cache
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.RazorAssemblyInfo.cs
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets.build.json
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets.development.json
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.SoftkitWeb.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.build.SoftkitWeb.props
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.SoftkitWeb.props
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.SoftkitWeb.props
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\scopedcss\bundle\SoftkitWeb.styles.css
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\scopedcss\projectbundle\SoftkitWeb.bundle.scp.css
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.dll
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\refint\SoftkitWeb.dll
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.pdb
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.genruntimeconfig.cache
-C:\Users\softkit\Downloads\SoftkitWeb\SoftkitWeb\SoftkitWeb\obj\Debug\net7.0\ref\SoftkitWeb.dll
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.csproj.AssemblyReference.cache
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.AssemblyInfoInputs.cache
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.AssemblyInfo.cs
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.csproj.CoreCompileInputs.cache
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.MvcApplicationPartsAssemblyInfo.cache
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.RazorAssemblyInfo.cache
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.RazorAssemblyInfo.cs
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\bin\Debug\net7.0\appsettings.Development.json
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\bin\Debug\net7.0\appsettings.json
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.staticwebassets.runtime.json
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.exe
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.deps.json
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.runtimeconfig.json
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.dll
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\bin\Debug\net7.0\SoftkitWeb.pdb
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.SoftkitWeb.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.build.SoftkitWeb.props
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.SoftkitWeb.props
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.SoftkitWeb.props
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\staticwebassets.pack.json
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\staticwebassets.build.json
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\staticwebassets.development.json
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\scopedcss\bundle\SoftkitWeb.styles.css
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\scopedcss\projectbundle\SoftkitWeb.bundle.scp.css
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.dll
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\refint\SoftkitWeb.dll
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.pdb
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\SoftkitWeb.genruntimeconfig.cache
+D:\Proyectos Personales\Proyecto SisCotizacion\SoftkitWeb\obj\Debug\net7.0\ref\SoftkitWeb.dll
