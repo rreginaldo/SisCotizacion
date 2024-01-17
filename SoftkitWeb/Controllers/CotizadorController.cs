@@ -28,6 +28,15 @@ namespace SoftkitWeb.Controllers
             return View("TuVista", datos);
         }
 
+        public async Task<IActionResult> ObtenerClientes()
+        {
+            var apiUrl = "Api/GetReglas";
+            var datos = await _metodosApis.GetAsync<TuTipo>(apiUrl);
+
+            // Procesar los datos como sea necesario
+            return View("TuVista", datos);
+        }
+
         public class TuTipo
         {
             public string nombre { get; set; }
