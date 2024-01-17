@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <button id="btnBC" type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-BC"><i class="fas fa-search-plus"></i> Buscar Cotización</button>
                             <button id="btnNC" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nueva Cotización</button>
-                            <button id="btnVR" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-VR"><i class="far fa-eye"></i> Ver Reglas</button>
+                            <button id="btnVR" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-R"><i class="far fa-eye"></i> Ver Reglas</button>
                         </div>
                     </div>
                 </div>
@@ -119,37 +119,7 @@
                                                     <td>Bob Doe</td>
                                                     <td>11-7-2014</td>
                                                     <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>175</td>
-                                                    <td>Mike Doe</td>
-                                                    <td>11-7-2014</td>
-                                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>134</td>
-                                                    <td>Jim Doe</td>
-                                                    <td>11-7-2014</td>
-                                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>494</td>
-                                                    <td>Victoria Doe</td>
-                                                    <td>11-7-2014</td>
-                                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>832</td>
-                                                    <td>Michael Doe</td>
-                                                    <td>11-7-2014</td>
-                                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>982</td>
-                                                    <td>Rocky Doe</td>
-                                                    <td>11-7-2014</td>
-                                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                </tr>
+                                                </tr> 
                                             </tbody>
                                         </table>
                                     </div>
@@ -999,8 +969,8 @@
                                         <td>18/02/2024</td>
                                         <td>John Doe</td>
                                         <td>0988787678</td>
-                                        <td>0988787678</td> 
-                                        <td>0988787678</td> 
+                                        <td>0988787678</td>
+                                        <td>0988787678</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1015,13 +985,143 @@
                     <button id="M_btnEMP" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
                     <button id="M_btnELMP" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                 </div>
-                  
+
                 <button id="M_btnSMA" type="button" class="btn btn-sm btn-success" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Salir</button>
             </div>
         </div>
     </div>
 </div>
 
+
+<!-- Modal Cotizar Proveedor  -->
+<div class="modal fade" id="modal-CP">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cotizar Proveedor</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="M_txtCPCP">Codigo Producto:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtCPCP" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="M_txtNPCP">Nombre Producto:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtNPCP" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="M_txtRCP">RUC:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtRCP" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="M_txtRSCP">Razon Social:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtRSCP" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="M_txtMCP">Marca:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtMCP">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="M_txtVCCP">Valor Costo:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtVCCP">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="M_txtOCP">Observación:</label>
+                            <input type="text" class="form-control form-control-sm" id="M_txtOCP">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+
+                <button id="M_btnCHCP" type="button" class="btn btn-sm btn-warning"><i class="fas fa-plus-circle"></i> Consultar Historico</button>
+
+                <button id="M_btnACP" type="button" class="btn btn-sm btn-success" data-dismiss="modal"><i class="fas fa-check-double"></i> Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Reglas  -->
+<div class="modal fade" id="modal-R">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Reglas</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="callout callout-success">
+                    <h5>Reglas Precio Venta</h5>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table id="M_Tabla_R" class="table table-bordered table-hover ">
+                                    <thead>
+                                        <tr>
+                                            <th>Grupo</th>
+                                            <th>Dealer</th>
+                                            <th>Alter.</th>
+                                            <th>Regla</th>
+                                            <th>Max. Dealer</th>
+                                            <th>Min. Alter.</th>
+                                            <th>Max. Alter.</th>
+                                            <th>Check</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Pruebas</td>
+                                            <td>1</td>
+                                            <td>2.3</td>
+                                            <td>12.2</td>
+                                            <td>23.6</td>
+                                            <td>23.6</td>
+                                            <td>23.6</td>
+                                            <td>
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="checkbox" id="checkboxPrimary1" checked="">
+                                                    <label for="checkboxPrimary1">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
 
 
 

@@ -2,8 +2,8 @@
 
     // Botones 
     var btnBC = $('#btnBC');
-    var btnBC = $('#btnBC');
-    var btnBC = $('#btnBC');
+    var btnNC = $('#btnNC');
+    var btnVR = $('#btnVR');
 
     //Datos Cliente 
     var btnCB = $('#btnCB');
@@ -89,36 +89,36 @@
     // Controles de Modales
 
     /*Modal Buscar Cotizaciones*/
-    var modalBC = $('#modal-BC'); 
+    var modalBC = $('#modal-BC');
     var M_Tabla_BC = $('#M_Tabla_BC');
 
-       
+
     /*Modal Buscar Cliente*/
-    var modalBCL = $('#modal-BCL'); 
+    var modalBCL = $('#modal-BCL');
     var M_cboOrden = $('#M_cboOrden');
     var M_txtMBBC = $('#M_txtMBBC');
     var M_tablaBC = $('#M_tablaBC');
     var M_btnNBC = $('#M_btnNBC');
     var M_btnEBC = $('#M_btnEBC');
     var M_btnELBC = $('#M_btnELBC');
-     
+
     /*Modal Agregar Producto */
-    var modalAP = $('#modal-AP'); 
+    var modalAP = $('#modal-AP');
     var M_txtAAP = $('#M_txtAAP');
     var M_txtA2AP = $('#M_txtA2AP');
     var M_txtCAP = $('#M_txtCAP');
     var M_btnGAP = $('#M_btnGAP');
 
     /*Modal Manteminiento de Articulos*/
-    var modalMA = $('#modal-MA'); 
+    var modalMA = $('#modal-MA');
     var M_cboOMA = $('#M_cboOMA');
     var M_txtBMA = $('#M_txtBMA');
     var M_btnBMA = $('#M_btnBMA');
     var M_checkboxS = $('#M_checkboxS');
     var M_btnSMA = $('#M_btnSMA');
 
-   /* Modal Manteminiento de Proveedores*/
-    var modalMP = $('#modal-MP'); 
+    /*Modal Manteminiento de Proveedores*/
+    var modalMP = $('#modal-MP');
     var M_cboOMP = $('#M_cboOMP');
     var M_txtBMA = $('#M_txtBMA');
     var M_Tabla_MP = $('#M_Tabla_MP');
@@ -126,8 +126,29 @@
     var M_btnEMP = $('#M_btnEMP');
     var M_btnELMP = $('#M_btnELMP');
 
+    /*Modal Cotizar Proveedor*/
+    var modalCP = $('#modal-CP');
+    var M_txtCPCP = $('#M_txtCPCP');
+    var M_txtNPCP = $('#M_txtNPCP');
+    var M_txtRCP = $('#M_txtRCP');
+    var M_txtRSCP = $('#M_txtRSCP');
+    var M_txtMCP = $('#M_txtMCP');
+    var M_txtVCCP = $('#M_txtVCCP');
+    var M_txtOCP = $('#M_txtOCP');
+    var M_btnCHCP = $('#M_btnCHCP');
+    var M_btnACP = $('#M_btnACP');
 
-     // Constructor
+     /*Modal Reglas*/
+    var modalR = $('#modal-R');
+    var M_Tabla_R = $('#M_Tabla_R');
+    var M_txtCPCP = $('#M_txtCPCP');
+    var M_txtCPCP = $('#M_txtCPCP');
+    var M_txtCPCP = $('#M_txtCPCP');
+    var M_txtCPCP = $('#M_txtCPCP');
+
+
+
+    // Constructor
     $(Initialize);
 
     // Implementacion del constructor
@@ -136,22 +157,55 @@
         $('.select2').select2()
 
         //Date picker
-        $('#reservationdate').datetimepicker({
-            format: 'L'
-        });
+        CargarControlesDP();
 
-
-
-
-
-
+         
         btnBD.click(btnBD_clic);
         btnBP1.click(btnBP1_clic);
         btnBP2.click(btnBP2_clic);
         btnBP3.click(btnBP3_clic);
         btnBP4.click(btnBP4_clic);
-         
+
     };
+
+    function CargarControlesDP() {
+        $('#fechaPS').datetimepicker({
+            format: 'L',
+        });
+
+        $('#fechaPD').datetimepicker({
+            format: 'L',
+        });
+
+        $('#fechaP1').datetimepicker({
+            format: 'L',
+        });
+
+        $('#fechaP2').datetimepicker({
+            format: 'L',
+        });
+
+        $('#fechaP3').datetimepicker({
+            format: 'L',
+        });
+
+        $('#fechaP4').datetimepicker({
+            format: 'L',
+        });
+
+        $('#fechaKV').datetimepicker({
+            format: 'L',
+        });
+
+        $('#fechaKC').datetimepicker({
+            format: 'L',
+        });
+
+        $('#fechaKNI').datetimepicker({
+            format: 'L',
+        });
+    }
+
 
     function btnBD_clic() {
         modalMP.modal("show");
@@ -241,7 +295,7 @@
     var Global = {
         IdVenta: null
     }
- 
+
     //// Constructor
     //$(Initialize);
 
