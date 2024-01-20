@@ -153,13 +153,14 @@
 
     // Implementacion del constructor
     function Initialize() {
+        
         //Initialize Select2 Elements
         $('.select2').select2()
 
         //Date picker
         CargarControlesDP();
 
-         
+        btnVR.click(btnVR_clic); 
         btnBD.click(btnBD_clic);
         btnBP1.click(btnBP1_clic);
         btnBP2.click(btnBP2_clic);
@@ -206,6 +207,11 @@
         });
     }
 
+
+    function btnVR_clic() {
+        // modalMP.modal("show");
+
+    }
 
     function btnBD_clic() {
         modalMP.modal("show");

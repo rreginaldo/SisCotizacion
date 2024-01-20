@@ -21,11 +21,11 @@ namespace SoftkitWeb.Controllers
 
         public async Task<IActionResult> ObtenerReglas()
         {
-            var apiUrl = "Api/GetReglas";
+            var apiUrl = "Regla/Lista";
             var datos = await _metodosApis.GetAsync<TuTipo>(apiUrl);
 
             // Procesar los datos como sea necesario
-            return View("TuVista", datos);
+            return Json(datos);
         }
 
         public async Task<IActionResult> ObtenerClientes()
