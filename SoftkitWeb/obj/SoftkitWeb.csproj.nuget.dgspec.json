@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\softkit\\Downloads\\SisCotizacion-Dev\\SisCotizacion-Dev\\SoftkitWeb\\SoftkitWeb.csproj": {}
+    "C:\\Repositorio\\SisCotizacion\\SoftkitWeb\\SoftkitWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\softkit\\Downloads\\SisCotizacion-Dev\\SisCotizacion-Dev\\SoftkitWeb\\SoftkitWeb.csproj": {
+    "C:\\Repositorio\\SisCotizacion\\SoftkitWeb\\SoftkitWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\softkit\\Downloads\\SisCotizacion-Dev\\SisCotizacion-Dev\\SoftkitWeb\\SoftkitWeb.csproj",
+        "projectUniqueName": "C:\\Repositorio\\SisCotizacion\\SoftkitWeb\\SoftkitWeb.csproj",
         "projectName": "SoftkitWeb",
-        "projectPath": "C:\\Users\\softkit\\Downloads\\SisCotizacion-Dev\\SisCotizacion-Dev\\SoftkitWeb\\SoftkitWeb.csproj",
+        "projectPath": "C:\\Repositorio\\SisCotizacion\\SoftkitWeb\\SoftkitWeb.csproj",
         "packagesPath": "C:\\Users\\softkit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\softkit\\Downloads\\SisCotizacion-Dev\\SisCotizacion-Dev\\SoftkitWeb\\obj\\",
+        "outputPath": "C:\\Repositorio\\SisCotizacion\\SoftkitWeb\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
