@@ -138,7 +138,7 @@
     var M_btnCHCP = $('#M_btnCHCP');
     var M_btnACP = $('#M_btnACP');
 
-     /*Modal Reglas*/
+    /*Modal Reglas*/
     var modalR = $('#modal-R');
     var M_Tabla_R = $('#M_Tabla_R');
     var M_txtCPCP = $('#M_txtCPCP');
@@ -153,14 +153,14 @@
 
     // Implementacion del constructor
     function Initialize() {
-        
+
         //Initialize Select2 Elements
         $('.select2').select2()
 
         //Date picker
         CargarControlesDP();
 
-        btnVR.click(btnVR_clic); 
+        btnVR.click(btnVR_clic);
         btnBD.click(btnBD_clic);
         btnBP1.click(btnBP1_clic);
         btnBP2.click(btnBP2_clic);
@@ -209,7 +209,54 @@
 
 
     function btnVR_clic() {
-        // modalMP.modal("show");
+
+
+        //var parms = {
+        //    "TipoVenta": cboTipoVenta.find(':selected').text(),
+        //    "Cliente": cboCliente.find(':selected').text(),
+        //    "IdVenta": txt_numComprobante.val(),
+        //    "FechaVenta": app.ConvertDatetimeToInt(txt_fecha_registro.val(), '/')
+        //}
+
+        var url = "Cotizador/ObtenerReglas";
+        var method = 'GET';
+        var data = {};
+        var fnDoneCallback = function (data) {
+            var columns = [
+                { data: "grupo" },
+                { data: "dealer" },
+                { data: "alter" },
+                { data: "regla" },
+                { data: "max_Dealer" },
+                { data: "min_Alter" },
+                { data: "max_Alter" },
+                { data: "idRegla" }
+            ];
+            var columnDefs = [
+
+                {
+                    "targets": [7],
+                    'render': function (data, type, full, meta) {
+
+                        var htmlIcheck = '<div class="icheck-primary d-inline" >' +
+                            '<input type="checkbox" id="checkboxPrimary1" checked="">' +
+                            '<label for="checkboxPrimary1">' +
+                            '</label>' +
+                            '</div>';
+
+                        return htmlIcheck;
+
+                    }
+                },
+
+            ];
+            app.FillDataTable(M_Tabla_R, data, columns, columnDefs, '#M_Tabla_R');
+
+        };
+
+        app.CallAjax(method, url, data, fnDoneCallback);
+
+
 
     }
 

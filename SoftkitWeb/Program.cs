@@ -1,13 +1,14 @@
-using Microsoft.Extensions.DependencyInjection;
 using SoftkitWeb.Utilitarios;
-
+ 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // Invocando al URL Base del api
-builder.Services.AddHttpClient<MetodosApis>(client => {
+builder.Services.AddHttpClient<MetodosApis>(client =>
+{
     var url = builder.Configuration.GetSection("ApiUrl:BaseURL").Value;
     client.BaseAddress = new Uri(url);
 });

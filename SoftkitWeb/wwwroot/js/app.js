@@ -322,9 +322,9 @@
 
             cantidadLlamadas++;
 
-            if (cantidadLlamadas == 1) {
-                Loading.Show(messageWait);
-            }
+            //if (cantidadLlamadas == 1) {
+            //    Loading.Show(messageWait);
+            //}
 
             $.ajax({
                 method: m,
@@ -332,11 +332,11 @@
                 data: d,
                 cache: false,
             }).done(function (data, textStatus, jqXhr) {
-                if (data.InternalStatus === 1) {
+                if (data.internalStatus === 1) {
                     if (fnDoneCallback != null && typeof (fnDoneCallback) != "undefined") {
                         fnDoneCallback(data);
                     }
-                } else if (data.InternalStatus === 0) {
+                } else if (data.internalStatus === 0) {
                     Message.Error("Error", data.InternalException, "Aceptar", fnFailCallback)
                 }
                 else {
@@ -468,7 +468,7 @@
 
         table.clear();
         if (data != null) {
-            table.rows.add(data.Data);
+            table.rows.add(data.data);
             table.draw();
         }
 

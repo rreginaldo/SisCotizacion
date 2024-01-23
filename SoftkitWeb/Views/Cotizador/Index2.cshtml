@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Cotizador Ventas";
+    ViewData["Title"] = "Cotizador Ventas Vista 2";
 }
 
 <!-- Content Header (Page header) -->
@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active"><a href="#">@ViewData["Title"]</a></li>
+                    <li class="breadcrumb-item active"><a href="#"> @ViewData["Title"]</a></li>
                 </ol>
             </div>
         </div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                   
+
                 <!-- Datos Cliente -->
                 <div class="card card-default">
                     <div class="card-header">
@@ -99,7 +99,7 @@
                                                     <th>Cantidad</th>
                                                     <th>Codigo</th>
                                                     <th>Descripción</th>
-                                                    <th>Precio Cotizado</th> 
+                                                    <th>Precio Cotizado</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -132,7 +132,7 @@
                         </div>
                     </div>
                 </div>
-                 
+
                 <!-- Proveedores  -->
                 <div class="card card-default">
                     <div class="card-header">
@@ -196,7 +196,6 @@
                                                         <th>Item</th>
                                                         <th>Precio Venta</th>
                                                         <th>Marcar</th>
-                                                        <th>Observación</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -204,7 +203,6 @@
                                                         <td>183</td>
                                                         <td>200</td>
                                                         <td>Gooyear</td>
-                                                        <td>Bacon.</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -214,269 +212,279 @@
                             </div>
                         </div>
 
-                        <!-- Proveedor 1  -->
-                        <div class="callout callout-info">
-                            <h5>Proveedor 1</h5>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button id="btnBP1" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Provedor 1</button>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtNombreP1">Nombre:</label>
-                                        <input type="text" class="form-control form-control-sm" id="txtNombreP1" readonly>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Proveedor 1  -->
+                                <div class="callout callout-info">
+                                    <h5>Proveedor 1</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button id="btnBP1" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Provedor 1</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtFechaP1">Fecha:</label>
-                                        <div class="input-group date" id="fechaP1" data-target-input="nearest">
-                                            <input id="txtFechaP1" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP1" readonly>
-                                            <div class="input-group-append" data-target="#fechaP1" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtNombreP1">Nombre:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtNombreP1" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtFechaP1">Fecha:</label>
+                                                <div class="input-group date" id="fechaP1" data-target-input="nearest">
+                                                    <input id="txtFechaP1" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP1" readonly>
+                                                    <div class="input-group-append" data-target="#fechaP1" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtMonedaP1">Moneda:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtMonedaP1" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                    <table id="tablaP1" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Item</th>
+                                                                <th>Precio Venta</th>
+                                                                <th>Marcar</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>183</td>
+                                                                <td>150</td>
+                                                                <td>John Doe</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtMonedaP1">Moneda:</label>
-                                        <input type="text" class="form-control form-control-sm" id="txtMonedaP1" readonly>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table id="tablaP1" class="table table-head-fixed text-nowrap table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Item</th>
-                                                        <th>Precio Venta</th>
-                                                        <th>Marcar</th>
-                                                        <th>Observación</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>183</td>
-                                                        <td>150</td>
-                                                        <td>John Doe</td>
-                                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                            </div>
+                            <div class="col-md-6">
+
+                                <!-- Proveedor 2  -->
+                                <div class="callout callout-success">
+                                    <h5>Proveedor 2</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button id="btnBP2" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 2</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtNombreP2">Nombre:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtNombreP2" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtFechaP2">Fecha:</label>
+                                                <div class="input-group date" id="fechaP2" data-target-input="nearest">
+                                                    <input id="txtFechaP2" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP2" readonly>
+                                                    <div class="input-group-append" data-target="#fechaP2" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtMonedaP2">Moneda:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtMonedaP2" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                    <table id="tablaP2" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Item</th>
+                                                                <th>Precio Venta</th>
+                                                                <th>Marcar</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>183</td>
+                                                                <td>300</td>
+                                                                <td>John Doe</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Proveedor 2  -->
-                        <div class="callout callout-success">
-                            <h5>Proveedor 2</h5>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button id="btnBP2" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 2</button>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <!-- Proveedor 3  -->
+                                <div class="callout callout-warning">
+                                    <h5>Proveedor 3</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button id="btnBP3" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 3</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtNombreP3">Nombre:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtNombreP3" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtFechaP3">Fecha:</label>
+                                                <div class="input-group date" id="fechaP3" data-target-input="nearest">
+                                                    <input id="txtFechaP3" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP3" readonly>
+                                                    <div class="input-group-append" data-target="#fechaP3" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtMonedaP3">Moneda:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtMonedaP3" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                    <table id="tablaP3" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Item</th>
+                                                                <th>Precio Venta</th>
+                                                                <th>Marcar</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>183</td>
+                                                                <td>180</td>
+                                                                <td>John Doe</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
 
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtNombreP2">Nombre:</label>
-                                        <input type="text" class="form-control form-control-sm" id="txtNombreP2" readonly>
+                                <!-- Proveedor 4  -->
+                                <div class="callout callout-danger">
+                                    <h5>Proveedor 4</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button id="btnBP4" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 4</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtFechaP2">Fecha:</label>
-                                        <div class="input-group date" id="fechaP2" data-target-input="nearest">
-                                            <input id="txtFechaP2" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP2" readonly>
-                                            <div class="input-group-append" data-target="#fechaP2" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtNombreP4">Nombre:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtNombreP4" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtFechaP4">Fecha:</label>
+                                                <div class="input-group date" id="fechaP4" data-target-input="nearest">
+                                                    <input id="txtFechaP4" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP4" readonly>
+                                                    <div class="input-group-append" data-target="#fechaP4" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="txtMonedaP4">Moneda:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtMonedaP4" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                    <table id="tablaP4" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Item</th>
+                                                                <th>Precio Venta</th>
+                                                                <th>Marcar</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>183</td>
+                                                                <td>210</td>
+                                                                <td>John Doe</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtMonedaP2">Moneda:</label>
-                                        <input type="text" class="form-control form-control-sm" id="txtMonedaP2" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table id="tablaP2" class="table table-head-fixed text-nowrap table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Item</th>
-                                                        <th>Precio Venta</th>
-                                                        <th>Marcar</th>
-                                                        <th>Observación</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>183</td>
-                                                        <td>300</td>
-                                                        <td>John Doe</td>
-                                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
 
-                        <!-- Proveedor 3  -->
-                        <div class="callout callout-warning">
-                            <h5>Proveedor 3</h5>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button id="btnBP3" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 3</button>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtNombreP3">Nombre:</label>
-                                        <input type="text" class="form-control form-control-sm" id="txtNombreP3" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtFechaP3">Fecha:</label>
-                                        <div class="input-group date" id="fechaP3" data-target-input="nearest">
-                                            <input id="txtFechaP3" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP3" readonly>
-                                            <div class="input-group-append" data-target="#fechaP3" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtMonedaP3">Moneda:</label>
-                                        <input type="text" class="form-control form-control-sm" id="txtMonedaP3" readonly>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table id="tablaP3" class="table table-head-fixed text-nowrap table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Item</th>
-                                                        <th>Precio Venta</th>
-                                                        <th>Marcar</th>
-                                                        <th>Observación</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>183</td>
-                                                        <td>180</td>
-                                                        <td>John Doe</td>
-                                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Proveedor 4  -->
-                        <div class="callout callout-danger">
-                            <h5>Proveedor 4</h5>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button id="btnBP4" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar Proveedor 4</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtNombreP4">Nombre:</label>
-                                        <input type="text" class="form-control form-control-sm" id="txtNombreP4" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtFechaP4">Fecha:</label>
-                                        <div class="input-group date" id="fechaP4" data-target-input="nearest">
-                                            <input id="txtFechaP4" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaP4" readonly>
-                                            <div class="input-group-append" data-target="#fechaP4" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="txtMonedaP4">Moneda:</label>
-                                        <input type="text" class="form-control form-control-sm" id="txtMonedaP4" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table id="tablaP4" class="table table-head-fixed text-nowrap table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Item</th>
-                                                        <th>Precio Venta</th>
-                                                        <th>Marcar</th>
-                                                        <th>Observación</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>183</td>
-                                                        <td>210</td>
-                                                        <td>John Doe</td>
-                                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -566,165 +574,99 @@
                         </div>
                     </div>
                     <div class="card-body">
-
-                        <!-- Kardex Venta  -->
-                        <div class="callout callout-danger">
-                            <h5>Kardex Venta</h5>
-                            @*      <div class="row">
-                            <div class="col-md-2">
-                            <div class="form-group">
-                            <label for="txtMP_KV">Mon. Prec.</label>
-                            <input type="text" class="form-control form-control-sm" id="txtMP_KV" readonly>
-                            </div>
-                            </div>
-                            <div class="col-md-2">
-                            <div class="form-group">
-                            <label for="txtFechaKV">Fecha:</label>
-                            <div class="input-group date" id="fechaKV" data-target-input="nearest">
-                            <input id="txtFechaKV" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaKV" readonly>
-                            <div class="input-group-append" data-target="#fechaKV" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
+                        <div class="row">
                             <div class="col-md-4">
-                            <div class="form-group">
-                            <label for="txtCKV">Cliente:</label>
-                            <input type="text" class="form-control form-control-sm" id="txtCKV" readonly>
-                            </div>
-                            </div>
-                            </div> *@
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table id="tablaKV" class="table table-head-fixed text-nowrap table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Mon. Prec.</th>
-                                                        <th>Fecha</th>
-                                                        <th>Cliente</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>S/. 183</td>
-                                                        <td>17/10/2023</td>
-                                                        <td>Transporte ABC</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+
+                                <!-- Kardex Venta  -->
+                                <div class="callout callout-danger">
+                                    <h5>Kardex Venta</h5>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                    <table id="tablaKV" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Mon. Prec.</th>
+                                                                <th>Fecha</th>
+                                                                <th>Cliente</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>S/. 183</td>
+                                                                <td>17/10/2023</td>
+                                                                <td>Transporte ABC</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Kardex Cotización  -->
-                        <div class="callout callout-info">
-                            <h5>Kardex Cotización</h5>
-                            @*     <div class="row">
-                            <div class="col-md-2">
-                            <div class="form-group">
-                            <label for="txtMP_KC">Mon. Prec.</label>
-                            <input type="text" class="form-control form-control-sm" id="txtMP_KC" readonly>
-                            </div>
-                            </div>
-                            <div class="col-md-2">
-                            <div class="form-group">
-                            <label for="txtFechaKC">Fecha:</label>
-                            <div class="input-group date" id="fechaKC" data-target-input="nearest">
-                            <input id="txtFechaKC" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaKC" readonly>
-                            <div class="input-group-append" data-target="#fechaKC" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                            </div>
-                            </div>
                             </div>
                             <div class="col-md-4">
-                            <div class="form-group">
-                            <label for="txtCKC">Cliente:</label>
-                            <input type="text" class="form-control form-control-sm" id="txtCKC" readonly>
-                            </div>
-                            </div>
-                            </div> *@
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table id="tablaKC" class="table table-head-fixed text-nowrap table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Mon. Prec.</th>
-                                                        <th>Fecha</th>
-                                                        <th>Cliente</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>S/. 183</td>
-                                                        <td>15/10/2023</td>
-                                                        <td>Vicente SRA</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                <!-- Kardex Cotización  -->
+                                <div class="callout callout-info">
+                                    <h5>Kardex Cotización</h5>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                    <table id="tablaKC" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Mon. Prec.</th>
+                                                                <th>Fecha</th>
+                                                                <th>Cliente</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>S/. 183</td>
+                                                                <td>15/10/2023</td>
+                                                                <td>Vicente SRA</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+
                                         </div>
-
                                     </div>
-
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Kardex Nota Ingreso  -->
-                        <div class="callout callout-success">
-                            <h5>Kardex Nota Ingreso</h5>
-                            @*    <div class="row">
-                            <div class="col-md-2">
-                            <div class="form-group">
-                            <label for="txtMP_KNI">Mon. Prec.</label>
-                            <input type="text" class="form-control form-control-sm" id="txtMP_KNI" readonly>
-                            </div>
-                            </div>
-                            <div class="col-md-2">
-                            <div class="form-group">
-                            <label for="txtFechaKNI">Fecha:</label>
-                            <div class="input-group date" id="fechaKNI" data-target-input="nearest">
-                            <input id="txtFechaKNI" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaKNI" readonly>
-                            <div class="input-group-append" data-target="#fechaKNI" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                            </div>
-                            </div>
                             </div>
                             <div class="col-md-4">
-                            <div class="form-group">
-                            <label for="txtPKNI">Proveedor:</label>
-                            <input type="text" class="form-control form-control-sm" id="txtPKNI" readonly>
-                            </div>
-                            </div>
-                            </div> *@
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                                            <table id="tablaKNI" class="table table-head-fixed text-nowrap table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Mon. Prec.</th>
-                                                        <th>Fecha</th>
-                                                        <th>Proveedor</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>S/. 183</td>
-                                                        <td>01/04/2022</td>
-                                                        <td>Distribuidora Mendez</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+
+                                <!-- Kardex Nota Ingreso  -->
+                                <div class="callout callout-success">
+                                    <h5>Kardex Nota Ingreso</h5>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                    <table id="tablaKNI" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Mon. Prec.</th>
+                                                                <th>Fecha</th>
+                                                                <th>Proveedor</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>S/. 183</td>
+                                                                <td>01/04/2022</td>
+                                                                <td>Distribuidora Mendez</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1111,7 +1053,25 @@
                                             <th>Check</th>
 
                                         </tr>
-                                    </thead> 
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Pruebas</td>
+                                            <td>1</td>
+                                            <td>2.3</td>
+                                            <td>12.2</td>
+                                            <td>23.6</td>
+                                            <td>23.6</td>
+                                            <td>23.6</td>
+                                            <td>
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="checkbox" id="checkboxPrimary1" checked="">
+                                                    <label for="checkboxPrimary1">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
