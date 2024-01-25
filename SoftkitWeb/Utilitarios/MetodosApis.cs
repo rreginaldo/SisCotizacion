@@ -18,10 +18,10 @@ namespace SoftkitWeb.Utilitarios
 
             if (response.IsSuccessStatusCode)
             {
-                using (var stream = await response.Content.ReadAsStreamAsync())
-                {
-                    return await JsonSerializer.DeserializeAsync<T>(stream) ?? default!;
-                }
+                var responseData = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<T>(responseData) ?? default!;
+
+                return result; 
             }
 
             throw new InvalidOperationException($"Error al realizar la solicitud GET: {response.StatusCode}");
