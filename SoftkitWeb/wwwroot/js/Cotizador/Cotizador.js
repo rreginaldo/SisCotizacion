@@ -160,12 +160,26 @@
         //Date picker
         CargarControlesDP();
 
-        btnVR.click(btnVR_clic);
-        btnBD.click(btnBD_clic);
-        btnBP1.click(btnBP1_clic);
-        btnBP2.click(btnBP2_clic);
-        btnBP3.click(btnBP3_clic);
-        btnBP4.click(btnBP4_clic);
+
+        // Regla 
+        btnVR.click(btnVR_click);
+
+        // Cliente 
+        btnCB.click(btnCB_click);
+
+        // Cotizacion
+        btnBC.click(btnBC_click)
+
+        //Proveedor Dealer
+        btnBD.click(btnBD_click);
+        //Proveedor 1
+        btnBP1.click(btnBP1_click);
+        //Proveedor 2
+        btnBP2.click(btnBP2_click);
+        //Proveedor 3
+        btnBP3.click(btnBP3_click);
+        //Proveedor 4
+        btnBP4.click(btnBP4_click);
 
     };
 
@@ -208,27 +222,69 @@
     }
 
 
-    function btnVR_clic() {
+    // Cliente 
+    function btnCB_click() {
+        var url = "Cotizador/ListarCliente";
+        var method = 'GET';
+        var data = {};
+        var fnDoneCallback = function (data) {
+            var columns = [
+                { data: "CODIGO" },
+                { data: "RAZONSOCIAL" },
+                { data: "DIRECCION" },
+            ];
+            var columnDefs = [];
+            app.FillDataTable(M_tablaBC, data, columns, columnDefs, '#M_tablaBC');
+        };
+        app.CallAjax(method, url, data, fnDoneCallback);
+    }
 
+    // Cotizacion 
+    function btnBC_click() {
+        var url = "Cotizador/BuscarCotizacion";
+        var method = 'GET';
+        var data = {};
+        var fnDoneCallback = function (data) {
+            var columns = [
+                { data: "fecha" },
+                { data: "Cliente" },
+                { data: "CotiStarFoft" },
+                { data: "CotiSofkit" },
+            ];
+            var columnDefs = [
+                {
+                    "targets": [3],
+                    "visible": false,
+                },
+                {
+                    "targets": [0],
+                    'render': function (data, type, full, meta) {
+                        debugger;
+                        var fechaFormateada = moment(data, 'D/M/YYYY HH:mm:ss').format('DD/MM/YYYY');
 
-        //var parms = {
-        //    "TipoVenta": cboTipoVenta.find(':selected').text(),
-        //    "Cliente": cboCliente.find(':selected').text(),
-        //    "IdVenta": txt_numComprobante.val(),
-        //    "FechaVenta": app.ConvertDatetimeToInt(txt_fecha_registro.val(), '/')
-        //}
+                        return fechaFormateada;
+                    }
+                }
 
+            ];
+            app.FillDataTable(M_Tabla_BC, data, columns, columnDefs, '#M_Tabla_BC');
+        };
+        app.CallAjax(method, url, data, fnDoneCallback);
+    }
+
+    // Regla 
+    function btnVR_click() {
         var url = "Cotizador/ObtenerReglas";
         var method = 'GET';
         var data = {};
         var fnDoneCallback = function (data) {
             var columns = [
                 { data: "Nombre" },
-                { data: "dealer" },
+                { data: "Dealer" },
                 { data: "Alternativo" },
-                { data: "Regla" },
+                { data: "Regla1" },
                 { data: "NOExecede" },
-                { data: "valmix" },
+                { data: "valmin" },
                 { data: "valmax" },
                 { data: "ID" }
             ];
@@ -237,10 +293,9 @@
                 {
                     "targets": [7],
                     'render': function (data, type, full, meta) {
-
                         var htmlIcheck = '<div class="icheck-primary d-inline" >' +
-                            '<input type="checkbox" id="checkboxPrimary1" checked="">' +
-                            '<label for="checkboxPrimary1">' +
+                            '<input type="checkbox" id="checkbox' + full.ID + '" checked="1">' +
+                            '<label for="checkbox' + full.ID + '">' +
                             '</label>' +
                             '</div>';
 
@@ -253,30 +308,26 @@
             app.FillDataTable(M_Tabla_R, data, columns, columnDefs, '#M_Tabla_R');
 
         };
-
         app.CallAjax(method, url, data, fnDoneCallback);
-
-
-
     }
-
-    function btnBD_clic() {
+    //Proveedor Dealer 
+    function btnBD_click() {
         modalMP.modal("show");
     }
 
-    function btnBP1_clic() {
+    function btnBP1_click() {
         modalMP.modal("show");
     }
 
-    function btnBP2_clic() {
+    function btnBP2_click() {
         modalMP.modal("show");
     }
 
-    function btnBP3_clic() {
+    function btnBP3_click() {
         modalMP.modal("show");
     }
 
-    function btnBP4_clic() {
+    function btnBP4_click() {
         modalMP.modal("show");
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using RESTAPI_CORE.Modelos;
+using System.Net.Http;
 using System.Text.Json;
 
 namespace SoftkitWeb.Utilitarios
@@ -14,6 +15,7 @@ namespace SoftkitWeb.Utilitarios
 
         public async Task<T> GetAsync<T>(string apiUrl)
         {
+
             var response = await _httpClient.GetAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
@@ -21,10 +23,10 @@ namespace SoftkitWeb.Utilitarios
                 var responseData = await response.Content.ReadAsStringAsync();
                 var result = JsonSerializer.Deserialize<T>(responseData) ?? default!;
 
-                return result; 
+                return result;
             }
-
             throw new InvalidOperationException($"Error al realizar la solicitud GET: {response.StatusCode}");
+
         }
 
         public async Task<T> PostAsync<T>(string apiUrl, object data)
@@ -33,10 +35,10 @@ namespace SoftkitWeb.Utilitarios
 
             if (response.IsSuccessStatusCode)
             {
-                using (var stream = await response.Content.ReadAsStreamAsync())
-                {
-                    return await JsonSerializer.DeserializeAsync<T>(stream) ?? default!;
-                }
+                var responseData = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<T>(responseData) ?? default!;
+
+                return result;
             }
 
             throw new InvalidOperationException($"Error al realizar la solicitud POST: {response.StatusCode}");
@@ -48,10 +50,10 @@ namespace SoftkitWeb.Utilitarios
 
             if (response.IsSuccessStatusCode)
             {
-                using (var stream = await response.Content.ReadAsStreamAsync())
-                {
-                    return await JsonSerializer.DeserializeAsync<T>(stream) ?? default!;
-                }
+                var responseData = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<T>(responseData) ?? default!;
+
+                return result;
             }
 
             throw new InvalidOperationException($"Error al realizar la solicitud PUT: {response.StatusCode}");

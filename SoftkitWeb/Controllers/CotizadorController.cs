@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RESTAPI_CORE.Modelos;
 using SoftkitWeb.Utilitarios;
-using System.Diagnostics.Metrics;
-using System.Text.RegularExpressions;
-using static SoftkitWeb.Controllers.CotizadorController;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SoftkitWeb.Controllers
 {
@@ -22,97 +19,55 @@ namespace SoftkitWeb.Controllers
             return View();
         }
 
-        public IActionResult Index2()
+        public IActionResult Index1()
         {
             return View();
         }
 
+        #region Articulo
 
+        #endregion
+
+
+        #region Cliente
+        public async Task<IActionResult> ListarCliente()
+        {
+            var apiUrl = "Cliente/Lista";
+            var result = await _metodosApis.GetAsync<Response<List<Cliente>>>(apiUrl);
+            return Json(result);
+        }
+
+        #endregion
+
+
+        #region Cotizacion
+
+        public async Task<IActionResult> BuscarCotizacion()
+        {
+            var apiUrl = "Cotizacion/Lista";
+            var result = await _metodosApis.GetAsync<Response<List<CotizacionBuscar>>>(apiUrl);
+            return Json(result);
+        }
+
+       
+
+        #endregion
+
+        #region Producto
+
+        #endregion
+
+
+        #region Regla
 
         public async Task<IActionResult> ObtenerReglas()
         {
             var apiUrl = "Regla/Lista";
-            var datos = await _metodosApis.GetAsync<ApiResponse<ReglaBE>>(apiUrl);
-
-            //var datos = new List<ReglaBE>() {
-            //    new ReglaBE()
-            //    {
-            //    Grupo = "Prueba",
-            //    Dealer = "Prueba",
-            //    Alter = "Prueba",
-            //    Regla = "Prueba",
-            //    Max_Dealer = "Prueba",
-            //    Min_Alter = "Prueba",
-            //    Max_Alter = "Prueba",
-            //    IdRegla = "Prueba",
-            //    },
-            //     new ReglaBE()
-            //    {
-            //    Grupo = "Prueba2",
-            //    Dealer = "Prueba2",
-            //    Alter = "Prueba2",
-            //    Regla = "Prueba2",
-            //    Max_Dealer = "Prueba2",
-            //    Min_Alter = "Prueba2",
-            //    Max_Alter = "Prueba2",
-            //    IdRegla = "Prueba2",
-            //    } 
-            //};
-
-            // resultado exitoso 
-            var obj = new
-            {
-                internalStatus = 1,
-                data = datos.response
-            };
-
-            // Procesar los datos como sea necesario
-            return Json(obj);
+            var result = await _metodosApis.GetAsync<Response<List<Regla>>>(apiUrl);
+            return Json(result);
         }
 
-        public async Task<IActionResult> ObtenerClientes()
-        {
-            var apiUrl = "Api/GetReglas";
-            var datos = await _metodosApis.GetAsync<ApiResponse<ReglaBE>>(apiUrl);
-
-            // Procesar los datos como sea necesario
-            return View("TuVista", datos);
-        }
-
-
-        // entidades que estan en el api 
-        public class TuTipo
-        {
-            public string nombre { get; set; }
-        }
-
-       
-    public class ApiResponse<T>
-    {
-        //public bool Success { get; set; }
-        //public T Data { get; set; }
-        //public string Error { get; set; }
-
-            public string mensaje { get; set; } 
-            public List<T> response { get; set; }
-            public T ObjResponse { get; set; } 
-        }
-
-        public class ReglaBE
-        {
-            public int ID { get; set; }
-            public string Nombre { get; set; }
-            public int Dealer { get; set; }
-            public int Alternativo { get; set; }
-            public decimal Regla1 { get; set; }
-            public decimal NOExecede { get; set; }
-            public decimal valmin { get; set; }
-            public decimal valmax { get; set; }
-
-
-        }
-
-
+        #endregion
 
     }
 }

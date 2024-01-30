@@ -332,11 +332,11 @@
                 data: d,
                 cache: false,
             }).done(function (data, textStatus, jqXhr) {
-                if (data.internalStatus === 1) {
+                if (data.InternalStatus === 1) {
                     if (fnDoneCallback != null && typeof (fnDoneCallback) != "undefined") {
                         fnDoneCallback(data);
                     }
-                } else if (data.internalStatus === 0) {
+                } else if (data.InternalStatus === 0) {
                     Message.Error("Error", data.InternalException, "Aceptar", fnFailCallback)
                 }
                 else {
@@ -345,7 +345,7 @@
             }).fail(function (jqXhr, textStatus, errorThrow) {
                 var body = "<h3>Se ha producido un error inesperado al procesar su solicitud.</h><hr>"
                 body = body + "<b>Status: </b>" + jqXhr.status + "<br/>";
-                body = body + "<b>Error: </b>" + errorThrow;
+                body = body + "<b>Error: </b>" + errorThrow + "</b>" + jqXhr.responseText ;
                 Error.Show(body);
             }).always(function (jqXhr, textStatus) {
 
@@ -468,7 +468,7 @@
 
         table.clear();
         if (data != null) {
-            table.rows.add(data.data);
+            table.rows.add(data.Data);
             table.draw();
         }
 

@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews()
 // Invocando al URL Base del api
 builder.Services.AddHttpClient<MetodosApis>(client =>
 {
-    var url = builder.Configuration.GetSection("ApiUrl:BaseURL").Value;
+    var url = builder.Configuration.GetSection("ApiUrl:BaseURL").Value ?? "";
     client.BaseAddress = new Uri(url);
 });
 
