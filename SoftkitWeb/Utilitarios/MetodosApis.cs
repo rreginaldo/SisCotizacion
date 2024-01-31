@@ -22,11 +22,9 @@ namespace SoftkitWeb.Utilitarios
             {
                 var responseData = await response.Content.ReadAsStringAsync();
                 var result = JsonSerializer.Deserialize<T>(responseData) ?? default!;
-
                 return result;
             }
             throw new InvalidOperationException($"Error al realizar la solicitud GET: {response.StatusCode}");
-
         }
 
         public async Task<T> PostAsync<T>(string apiUrl, object data)
@@ -37,10 +35,8 @@ namespace SoftkitWeb.Utilitarios
             {
                 var responseData = await response.Content.ReadAsStringAsync();
                 var result = JsonSerializer.Deserialize<T>(responseData) ?? default!;
-
                 return result;
             }
-
             throw new InvalidOperationException($"Error al realizar la solicitud POST: {response.StatusCode}");
         }
 
@@ -52,22 +48,21 @@ namespace SoftkitWeb.Utilitarios
             {
                 var responseData = await response.Content.ReadAsStringAsync();
                 var result = JsonSerializer.Deserialize<T>(responseData) ?? default!;
-
                 return result;
             }
-
             throw new InvalidOperationException($"Error al realizar la solicitud PUT: {response.StatusCode}");
         }
 
-        public async Task<bool> DeleteAsync(string apiUrl)
+        public async Task<T> DeleteAsync<T>(string apiUrl)
         {
             var response = await _httpClient.DeleteAsync(apiUrl);
 
             if (response.IsSuccessStatusCode)
             {
-                return true;
+                var responseData = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<T>(responseData) ?? default!; 
+                return result;
             }
-
             throw new InvalidOperationException($"Error al realizar la solicitud DELETE: {response.StatusCode}");
         }
 

@@ -5,21 +5,18 @@
     var btnNC = $('#btnNC');
     var btnVR = $('#btnVR');
 
-    //Datos Cliente 
+    //Datos Cotización
     var btnCB = $('#btnCB');
-    var txtNombreDC = $('#txtNombreDC');
-    var txtApellidosDC = $('#txtApellidosDC');
-    var txtCorreoDC = $('#txtCorreoDC');
+    var txtRucDC = $('#txtRucDC');
+    var txtRSDC = $('#txtRSDC');
+    var txtDDC = $('#txtDDC');
+    var txtFechaDC = $('#txtFechaDC');
+    var fechaDC = $('#fechaDC');
+    var cboMonedaDC = $('#cboMonedaDC');
     var btnAgregar = $('#btnBC');
     var btnQuitar = $('#btnBC');
     var tablaDC = $('#tablaDC');
-
-    // Precio Sugerido 
-    var btnGC = $('#btnGC');
-    var fechaPS = $('#fechaPS');
-    var txtFechaPS = $('#txtFechaPS');
-    var cboMoneda = $('#cboMoneda');
-    var tablaPS = $('#tablaPS');
+    var btnDC = $('#btnDC');
 
 
     /* Proveedores */
@@ -28,7 +25,6 @@
     var txtNombrePD = $('#txtNombrePD');
     var fechaPD = $('#fechaPD');
     var txtFechaPD = $('#txtFechaPD');
-    var txtMonedaPD = $('#txtMonedaPD');
     var tablaPD = $('#tablaPD');
 
     //Proveedor 1
@@ -36,7 +32,6 @@
     var txtNombreP1 = $('#txtNombreP1');
     var fechaP1 = $('#fechaP1');
     var txtFechaP1 = $('#txtFechaP1');
-    var txtMonedaP1 = $('#txtMonedaP1');
     var tablaP1 = $('#tablaP1');
 
     //Proveedor 2
@@ -44,7 +39,6 @@
     var txtNombreP2 = $('#txtNombreP2');
     var fechaP2 = $('#fechaP2');
     var txtFechaP2 = $('#txtFechaP2');
-    var txtMonedaP2 = $('#txtMonedaP2');
     var tablaP2 = $('#tablaP2');
 
     //Proveedor 3
@@ -52,7 +46,6 @@
     var txtNombreP3 = $('#txtNombreP3');
     var fechaP3 = $('#fechaP3');
     var txtFechaP3 = $('#txtFechaP3');
-    var txtMonedaP3 = $('#txtMonedaP3');
     var tablaP3 = $('#tablaP3');
 
     //Proveedor 4
@@ -60,7 +53,6 @@
     var txtNombreP4 = $('#txtNombreP4');
     var fechaP4 = $('#fechaP4');
     var txtFechaP4 = $('#txtFechaP4');
-    var txtMonedaP4 = $('#txtMonedaP4');
     var tablaP4 = $('#tablaP4');
 
     /*Control Empresa*/
@@ -84,7 +76,6 @@
     var txtFechaKNI = $('#txtFechaKNI');
     var txtPKNI = $('#txtPKNI');
     var tablaKNI = $('#tablaKNI');
-
 
     // Controles de Modales
 
@@ -114,7 +105,7 @@
     var M_cboOMA = $('#M_cboOMA');
     var M_txtBMA = $('#M_txtBMA');
     var M_btnBMA = $('#M_btnBMA');
-    var M_checkboxS = $('#M_checkboxS');
+    var M_Tabla_MA = $('#M_Tabla_MA');
     var M_btnSMA = $('#M_btnSMA');
 
     /*Modal Manteminiento de Proveedores*/
@@ -170,6 +161,7 @@
         // Cotizacion
         btnBC.click(btnBC_click)
 
+        //<!-- Proveedores  -->
         //Proveedor Dealer
         btnBD.click(btnBD_click);
         //Proveedor 1
@@ -181,10 +173,26 @@
         //Proveedor 4
         btnBP4.click(btnBP4_click);
 
+        //<!-- Control Empresa  -->
+
+
+        //<!-- Modal Buscar Cotizaciones -->
+
+        //<!-- Modal Buscar Cliente -->
+        //<!-- Modal Agregar Producto  -->
+
+
+        //<!--Modal Manteminiento de Articulos-- > 
+        M_btnBMA.click(M_btnBMA_click);
+
+        //<!-- Modal Manteminiento de Proveedores  -->
+
+        //<!-- Modal Cotizar Proveedor  -->
+
     };
 
     function CargarControlesDP() {
-        $('#fechaPS').datetimepicker({
+        $('#fechaDC').datetimepicker({
             format: 'L',
         });
 
@@ -241,7 +249,7 @@
 
     // Cotizacion 
     function btnBC_click() {
-        var url = "Cotizador/BuscarCotizacion";
+        var url = "Cotizador/ListarCotizacion";
         var method = 'GET';
         var data = {};
         var fnDoneCallback = function (data) {
@@ -310,7 +318,9 @@
         };
         app.CallAjax(method, url, data, fnDoneCallback);
     }
-    //Proveedor Dealer 
+
+    //<!-- Proveedores  -->
+    //Proveedor Dealer
     function btnBD_click() {
         modalMP.modal("show");
     }
@@ -330,6 +340,42 @@
     function btnBP4_click() {
         modalMP.modal("show");
     }
+
+    //<!-- Control Empresa  -->
+
+
+    //<!-- Modal Buscar Cotizaciones -->
+
+    //<!-- Modal Buscar Cliente -->
+    //<!-- Modal Agregar Producto  -->
+
+
+    //<!--Modal Manteminiento de Articulos-- > 
+    function M_btnBMA_click() {
+        var url = "Cotizador/ListarArticulos";
+        var method = 'POST';
+        var data = {
+            descripcion: M_txtBMA.val().trim()
+        };
+        var fnDoneCallback = function (data) {
+            var columns = [
+                { data: "CODIGO" },
+                { data: "DESCRIPCION" }
+            ];
+            var columnDefs = [];
+            app.FillDataTable(M_Tabla_MA, data, columns, columnDefs, '#M_Tabla_MA');
+
+        };
+        app.CallAjax(method, url, data, fnDoneCallback);
+
+    }
+
+    //<!-- Modal Manteminiento de Proveedores  -->
+
+    //<!-- Modal Cotizar Proveedor  -->
+
+
+
 
 
 
