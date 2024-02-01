@@ -20,7 +20,7 @@ namespace SoftkitWeb.Controllers
         }
 
         #region Articulo
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> ListarArticulos(string descripcion)
         {
             var apiUrl = string.Format("Articulo/ListaArticulo?descripcion={0}", descripcion);
@@ -69,7 +69,7 @@ namespace SoftkitWeb.Controllers
             return Json(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> ObtenerCotizacion(int idcotizacion)
         {
             var apiUrl = string.Format("Cotizacion/Obtener/{0}", idcotizacion);
@@ -77,7 +77,7 @@ namespace SoftkitWeb.Controllers
             return Json(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> KardexCotizacion(string codigo, string codcliente)
         {
             var apiUrl = string.Format("Cotizacion/KardexCotizacion?codigo={0}&codcliente={1}", codigo, codcliente);
@@ -85,7 +85,7 @@ namespace SoftkitWeb.Controllers
             return Json(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> KardexVenta(string codigo, string codcliente)
         {
             var apiUrl = string.Format("Cotizacion/KardexVenta?codigo={0}&codcliente={1}", codigo, codcliente);
@@ -93,7 +93,7 @@ namespace SoftkitWeb.Controllers
             return Json(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> KardexNotaIngreso(string codigo, string codcliente)
         {
             var apiUrl = string.Format("Cotizacion/KardexNotaIngreso?codigo={0}&codcliente={1}", codigo, codcliente);
@@ -112,7 +112,7 @@ namespace SoftkitWeb.Controllers
             return Json(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> ObtenerProducto(int idProducto)
         {
             var apiUrl = string.Format("Producto/Obtener/{0}", idProducto);

@@ -491,7 +491,7 @@
                 lengthChange: filtros ? app.Defaults.DataTableOrdering : !app.Defaults.DataTableOrdering,
                 select: {
                     style: selectColumn == undefined ? app.Defaults.DataTableSelect.Single : app.Defaults.DataTableSelect.Multiple
-                },
+                },  
                 order: [],
                 columns: columns,
                 columnDefs: columnsDefs,
