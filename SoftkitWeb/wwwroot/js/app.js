@@ -99,7 +99,7 @@
         //$.fn.datepicker.defaults.autoclose = app.Defaults.DatePickerAutoclose;
         //$.fn.datepicker.defaults.format = app.Defaults.DatePickerFormat;
         //$.fn.datepicker.defaults.language = app.Defaults.Language;
-         
+
     }
 
     function SetActiveMenu() {
@@ -315,7 +315,10 @@
     var cantidadLlamadas = 0;
 
     function CallAjax(method, url, data, fnDoneCallback, fnFailCallback, fnAlwaysCallback, messageWait) {
+        var deferred = $.Deferred();
+
         try {
+
             var m = method || "POST";
             var u = app.BaseSiteUrl + url;
             var d = data || "";
@@ -342,10 +345,12 @@
                 else {
                     $mainContent.html(data);
                 }
+                deferred.resolve(); // Resuelve la promesa cuando la consulta AJAX es exitosa
             }).fail(function (jqXhr, textStatus, errorThrow) {
+                deferred.reject(); // Rechaza la promesa en caso de error
                 var body = "<h3>Se ha producido un error inesperado al procesar su solicitud.</h><hr>"
                 body = body + "<b>Status: </b>" + jqXhr.status + "<br/>";
-                body = body + "<b>Error: </b>" + errorThrow + "</b>" + jqXhr.responseText ;
+                body = body + "<b>Error: </b>" + errorThrow + "</b>" + jqXhr.responseText;
                 Error.Show(body);
             }).always(function (jqXhr, textStatus) {
 
@@ -359,11 +364,15 @@
             });
 
         } catch (e) {
+            deferred.reject(); // Rechaza la promesa en caso de error
             Loading.Hide();
             var body = "<h3>Se ha producido un error inesperado al procesar su solicitud.</h3><hr>";
             body = body + "<b>Error controlado: </b>" + e.toString();
             Error.Show(body);
         }
+
+        return deferred.promise();
+
     }
 
     function GetHighestZIndex() {
@@ -491,7 +500,7 @@
                 lengthChange: filtros ? app.Defaults.DataTableOrdering : !app.Defaults.DataTableOrdering,
                 select: {
                     style: selectColumn == undefined ? app.Defaults.DataTableSelect.Single : app.Defaults.DataTableSelect.Multiple
-                },  
+                },
                 order: [],
                 columns: columns,
                 columnDefs: columnsDefs,

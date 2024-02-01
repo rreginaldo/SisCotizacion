@@ -251,14 +251,9 @@
             LlenarTablaProveedorP4(data);
 
             //<!-- Control Empresa  --> -- pendiente 
-            CargandoDatosControlEmpresa(data).then(function () {
-                debugger;
-                LlenarTablaKarderVenta(dataKarderVenta);
-                LlenarTablaKardexCotizacion(dataKardexCotizacion);
-                LlenarTablaKardexNotaIngreso(KardexNotaIngreso);
-            });
+            CargandoDatosControlEmpresa(data);
 
-             
+
 
         };
         app.CallAjax(method, url, data, fnDoneCallback);
@@ -353,47 +348,45 @@
         app.FillDataTable(tablaP4, data, columns, columnDefs, '#tablaP4');
 
     }
-
-    var dataKarderVenta = { Data: [] };
-    var dataKardexCotizacion = { Data: [] };
-    var KardexNotaIngreso = { Data: [] };
     function CargandoDatosControlEmpresa(data) {
-
-        var deferred = $.Deferred();
+        var dataKarderVenta = { Data: [] };
+        var dataKardexCotizacion = { Data: [] };
+        var KardexNotaIngreso = { Data: [] };
+        var deferreds = [];
 
         $.each(data.Data, function (index, value) {
-
-            //var obj = {
-            //    codigo: value.Cod,
-            //    codcliente: value.codcliente
-            //};
-
+            var consultaDeferred;
             var obj = {
-                codigo: "VS1075",
-                codcliente: "20100114187"
-            };
+                codigo: value.Cod,
+                codcliente: value.codcliente
+            }; 
             var fnDoneCallbackKV = function (r) {
-                dataKarderVenta.Data.push(r.Data);
+                dataKarderVenta.Data = dataKarderVenta.Data.concat(r.Data);
             };
-            GetKarderVenta(obj, fnDoneCallbackKV);
+            consultaDeferred = GetKarderVenta(obj, fnDoneCallbackKV);
+            deferreds.push(consultaDeferred);
 
             var fnDoneCallbackKC = function (r) {
-                dataKardexCotizacion.Data.push(r.Data);
+                dataKardexCotizacion.Data = dataKardexCotizacion.Data.concat(r.Data);
             };
-            GetKardexCotizacion(obj, fnDoneCallbackKC);
+            consultaDeferred = GetKardexCotizacion(obj, fnDoneCallbackKC);
+            deferreds.push(consultaDeferred);
 
             var fnDoneCallbackNI = function (r) {
-                KardexNotaIngreso.Data.push(r.Data)
+                KardexNotaIngreso.Data = KardexNotaIngreso.Data.concat(r.Data);
             };
-            GetKardexNotaIngreso(obj, fnDoneCallbackNI);
+            consultaDeferred = GetKardexNotaIngreso(obj, fnDoneCallbackNI);
+            deferreds.push(consultaDeferred);
+
         });
 
         // Cuando todas las consultas AJAX hayan terminado, resuelve la promesa
-        $.when.apply($, promises).then(function () {
-            deferred.resolve();
+        $.when.apply($, deferreds).then(function () {
+            //console.log("Todas las consultas AJAX y el bucle han terminado");
+            LlenarTablaKarderVenta(dataKarderVenta);
+            LlenarTablaKardexCotizacion(dataKardexCotizacion);
+            LlenarTablaKardexNotaIngreso(KardexNotaIngreso);
         });
-
-        return deferred.promise();
     }
 
     // Regla 
@@ -402,6 +395,7 @@
         var method = 'GET';
         var data = {};
         var fnDoneCallback = function (data) {
+            console.log(data);
             var columns = [
                 { data: "Nombre" },
                 { data: "Dealer" },
@@ -462,7 +456,7 @@
     function GetKarderVenta(data, fnDoneCallback) {
         var url = "Cotizador/KardexVenta";
         var method = 'POST';
-        app.CallAjax(method, url, data, fnDoneCallback);
+        return app.CallAjax(method, url, data, fnDoneCallback);
     }
     function LlenarTablaKarderVenta(data) {
         var columns = [
@@ -485,7 +479,7 @@
     function GetKardexCotizacion(data, fnDoneCallback) {
         var url = "Cotizador/KardexCotizacion";
         var method = 'POST';
-        app.CallAjax(method, url, data, fnDoneCallback);
+        return app.CallAjax(method, url, data, fnDoneCallback);
     }
     function LlenarTablaKardexCotizacion(data) {
         var columns = [
@@ -508,7 +502,7 @@
     function GetKardexNotaIngreso(data, fnDoneCallback) {
         var url = "Cotizador/KardexNotaIngreso";
         var method = 'POST';
-        app.CallAjax(method, url, data, fnDoneCallback);
+        return app.CallAjax(method, url, data, fnDoneCallback);
     }
     function LlenarTablaKardexNotaIngreso(data) {
         var columns = [
