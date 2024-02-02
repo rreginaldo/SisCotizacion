@@ -100,6 +100,9 @@
         //$.fn.datepicker.defaults.format = app.Defaults.DatePickerFormat;
         //$.fn.datepicker.defaults.language = app.Defaults.Language;
 
+        // Funciones iniciales
+        //SetActiveMenu();
+    //    ModalDraggable();
     }
 
     function SetActiveMenu() {
@@ -132,7 +135,7 @@
         var $btnCancel = $("#btnCancelModalMessage");
 
         var DefaultsOptions = {
-            Title: "Annies",
+            Title: "SoftkitWeb",
             Message: "",
             TextButtonAccept: "Aceptar",
             TextButtonCancel: "Cerrar",
@@ -325,9 +328,9 @@
 
             cantidadLlamadas++;
 
-            //if (cantidadLlamadas == 1) {
-            //    Loading.Show(messageWait);
-            //}
+            if (cantidadLlamadas == 1) {  
+                Loading.Show(messageWait);
+            }
 
             $.ajax({
                 method: m,
@@ -828,7 +831,28 @@
         }
     }
 
-
+    function ValidaForm(IdForm, rules, mensaje, fnDoneCallback) {
+        IdForm.validate({
+            rules: rules,
+            messages: mensaje,
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            },
+            submitHandler: function (form) {
+                // Esta función se ejecutará cuando el formulario esté validado
+                // Llama a tu función AJAX aquí
+                fnDoneCallback(form);
+            }
+        });
+    }
 
     return {
         PathName: PathName,
@@ -853,7 +877,8 @@
         FillDataTableFiltros: FillDataTableFiltros,
         GetDataOfDataTable: GetDataOfDataTable,
         ConvertIntToDatetimeDT: ConvertIntToDatetimeDT,
-        FillDataTableAjaxPaging: FillDataTableAjaxPaging
+        FillDataTableAjaxPaging: FillDataTableAjaxPaging,
+        ValidaForm: ValidaForm
     };
 
 

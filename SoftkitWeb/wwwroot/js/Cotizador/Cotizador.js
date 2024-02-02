@@ -6,6 +6,8 @@
     var btnVR = $('#btnVR');
 
     //Datos Cotización
+    var formDC = $('#formDC');
+    var idCliente = $('#idCliente');
     var btnCB = $('#btnCB');
     var txtRucDC = $('#txtRucDC');
     var txtRSDC = $('#txtRSDC');
@@ -16,7 +18,7 @@
     var btnAgregar = $('#btnBC');
     var btnQuitar = $('#btnBC');
     var tablaDC = $('#tablaDC');
-    var btnDC = $('#btnDC');
+    var btnGCDC = $('#btnGCDC');
 
 
     /* Proveedores */
@@ -125,7 +127,10 @@
     var M_txtCPCP = $('#M_txtCPCP');
     var M_txtCPCP = $('#M_txtCPCP');
 
-
+    var Message = {
+        ObtenerTipoBusqueda: "Obteniendo los tipos de busqueda, Por favor espere...",
+        GuardarSuccess: "Los datos se guardaron satisfactoriamente",
+    }
 
     // Constructor
     $(Initialize);
@@ -139,12 +144,31 @@
         //Date picker
         CargarControlesDP();
 
-
+        btnNC.click(function () {
+            win.location.reload(); 
+        });
         // Regla 
         btnVR.click(btnVR_click);
 
         // Cliente 
         btnCB.click(btnCB_click);
+        btnGCDC.click(btnGCDC_click);
+        M_tablaBC.on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                M_tablaBC.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                setTimeout(function () {
+                    var rowSelect = app.GetDataOfDataTable(M_tablaBC);
+                    if (rowSelect !== null) {
+                        ObtenerCliente(rowSelect);
+                        modalBCL.modal("hide");
+                    }
+                }, 200);
+            }
+        });
 
         // Cotizacion
         btnBC.click(btnBC_click);
@@ -161,7 +185,6 @@
                         ObtenerCotizacion(rowSelect);
                         modalBC.modal("hide");
                     }
-
                 }, 200);
             }
         });
@@ -197,7 +220,7 @@
         moment.locale('es');
 
         $('.miDatetimePicker').datetimepicker({
-            format: 'DD/MM/YYYY', // el formato de fecha que deseas
+            format: app.Defaults.DatePickerFormat, // el formato de fecha que deseas
             locale: 'es' // indica el idioma
             // Puedes agregar más opciones según tus necesidades
         });
@@ -209,23 +232,97 @@
 
     // Cliente 
     function btnCB_click() {
-        ListarCliente();
+        ListarCliente(); 
     }
-
+    function btnGCDC_click() {
+        var rules = {
+            ruc: {
+                required: true,
+            },
+            razonSocial: {
+                required: true,
+            },
+            direccion: {
+                required: true,
+            }
+        };
+        var mensaje = {
+            ruc: {
+                required: "Por favor, ingrese el ruc.",
+            },
+            razonSocial: {
+                required: "Por favor, ingrese la razón social",
+            },
+            direccion: {
+                required: "Por favor, ingrese la dirección",
+            }
+        }
+        var fnDoneCallback = function (data) {
+            var id = idCliente.val();
+            //if (id != "0") {
+            //    GuardarCliente();
+            //} else {
+            //    EditarCliente();
+            //} 
+        };
+        app.ValidaForm(formDC, rules, mensaje, fnDoneCallback);
+    }
     function ListarCliente() {
         var url = "Cotizador/ListarCliente";
         var method = 'GET';
         var data = {};
         var fnDoneCallback = function (data) {
+            modalBCL.modal("show")
             var columns = [
                 { data: "CODIGO" },
                 { data: "RAZONSOCIAL" },
                 { data: "DIRECCION" },
             ];
             var columnDefs = [];
-            app.FillDataTable(M_tablaBC, data, columns, columnDefs, '#M_tablaBC');
+            var filtros = {
+                pageLength: 5
+            };
+            var drawCallback = function (settings) {
+            }
+            app.FillDataTableFiltros(M_tablaBC, data, columns, columnDefs, '#M_tablaBC', filtros, null, drawCallback);
         };
         app.CallAjax(method, url, data, fnDoneCallback);
+    }
+    function GuardarCliente() {
+
+        //txtFechaDC.val( );
+        //cboMonedaDC.val( );
+        var url = "Cotizador/GuardarCliente";
+        var method = 'POST';
+        var data = {
+            CODIGO: txtRucDC.val(),
+            RAZONSOCIAL: txtRSDC.val(),
+            DIRECCION: txtDDC.val()
+        };
+        var fnDoneCallback = function (data) {
+            app.Message.Success("Grabar", Message.GuardarSuccess, "Aceptar", null);
+        };
+        app.CallAjax(method, url, data, fnDoneCallback);
+    }
+    function EditarCliente() {
+        var url = "Cotizador/EditarCliente";
+        var method = 'POST';
+        var data = {
+            CODIGO: txtRucDC.val(),
+            RAZONSOCIAL: txtRSDC.val(),
+            DIRECCION: txtDDC.val()
+        };
+        var fnDoneCallback = function (data) {
+            app.Message.Success("Editar", Message.GuardarSuccess, "Aceptar", null);
+        };
+        app.CallAjax(method, url, data, fnDoneCallback);
+    }
+    function ObtenerCliente(cliente) {
+        txtRucDC.val(cliente.CODIGO);
+        txtRSDC.val(cliente.RAZONSOCIAL);
+        txtDDC.val(cliente.DIRECCION);
+        //txtFechaDC.val(cliente.fecha);
+        //cboMonedaDC.val(cliente.Moneda).trigger('change');
     }
 
     // Cotizacion 
@@ -252,9 +349,6 @@
 
             //<!-- Control Empresa  --> -- pendiente 
             CargandoDatosControlEmpresa(data);
-
-
-
         };
         app.CallAjax(method, url, data, fnDoneCallback);
     }
@@ -359,7 +453,7 @@
             var obj = {
                 codigo: value.Cod,
                 codcliente: value.codcliente
-            }; 
+            };
             var fnDoneCallbackKV = function (r) {
                 dataKarderVenta.Data = dataKarderVenta.Data.concat(r.Data);
             };
@@ -386,7 +480,12 @@
             LlenarTablaKarderVenta(dataKarderVenta);
             LlenarTablaKardexCotizacion(dataKardexCotizacion);
             LlenarTablaKardexNotaIngreso(KardexNotaIngreso);
-        });
+        }).catch(function (error) {
+           /* debugger;*/
+            // El código en caso de error
+            //app.Message.Error("Error en Control Empresa", error);
+
+         });
     }
 
     // Regla 
@@ -395,7 +494,7 @@
         var method = 'GET';
         var data = {};
         var fnDoneCallback = function (data) {
-            console.log(data);
+            modalR.modal('show');
             var columns = [
                 { data: "Nombre" },
                 { data: "Dealer" },
@@ -525,10 +624,12 @@
 
     //<!-- Modal Buscar Cotizaciones -->
     function ListarCotizacion() {
+      
         var url = "Cotizador/ListarCotizacion";
         var method = 'GET';
         var data = {};
         var fnDoneCallback = function (data) {
+            modalBC.modal('show');
             var columns = [
                 { data: "fecha" },
                 { data: "Cliente" },
@@ -552,12 +653,10 @@
             var filtros = {
                 pageLength: 10
             };
-            var drawCallback = function (settings) {
+            var drawCallback = function (settings) { 
             }
 
-            //app.FillDataTableFiltros(M_Tabla_BC, data, columns, columnDefs, "#M_Tabla_BC", filtros, null, drawCallback);
-
-            app.FillDataTable(M_Tabla_BC, data, columns, columnDefs, '#M_Tabla_BC');
+            app.FillDataTableFiltros(M_Tabla_BC, data, columns, columnDefs, "#M_Tabla_BC", filtros, null, drawCallback);
 
         };
         app.CallAjax(method, url, data, fnDoneCallback);
@@ -654,10 +753,7 @@
     var $txtFechaHasta = $('#txtFechaHasta');
     //var $txtModalPrecioMayor = $('#txtModalPrecioMayor');
 
-    var Message = {
-        ObtenerTipoBusqueda: "Obteniendo los tipos de busqueda, Por favor espere...",
-        GuardarSuccess: "Los datos se guardaron satisfactoriamente",
-    }
+
 
 
     var Global = {
@@ -926,7 +1022,7 @@
                { data: "PrecioProm" },
                { data: "StockMin_Max" },
                { data: "Nro" },
-   
+     
            ];
            var columnDefs = [
                {
@@ -945,11 +1041,11 @@
            };
            var drawCallback = function (settings) {
            }
-   
+     
            app.FillDataTableFiltros(tbl_sp_Ventas, data, columns, columnDefs, "#tbl_sp_Ventas", filtros, null, drawCallback);
-   
+     
            tbl_sp_Ventas.on('click', 'tr', function () {
-   
+     
                if ($(this).hasClass('selected')) {
                    $(this).removeClass('selected');
                    txt_rm_stock_actual.val('');
@@ -966,7 +1062,7 @@
                            hdd_VentaSucursal.val(rowSelect.IdVentaSucursal);
                            FillTableStockMovimiento(rowSelect.IdVentaSucursal);
                        }
-   
+     
                    }, 200);
                }
            });*/
@@ -1154,8 +1250,8 @@
           txt_p_codigo.val(data.Codigo);
           txt_p_abreviatura.val(data.Abreviatura);
           txt_p_codigoBarra.val(data.CodeBar);
-  
-  
+     
+     
           setTimeout(function () {
               cbo_p_categoria.val(data.Categoria.IdCategoria).trigger('change');
               cbo_p_marca.val(data.Marca.IdMarca).trigger('change');
@@ -1180,16 +1276,16 @@
     /*
         function FillTableVentaSucursal() {
             dataVentaDet = { Data: [] };
-    
+     
             var obj = {
                 "IdVenta": Global.IdVenta
             }
-    
+     
             var method = "POST";
             var url = "Venta/GetVentaSucursal";
             var data = obj;
             var fnDoneCallback = function (data) {
-    
+     
                 $.each(data.Data, function (index, value) {
                     var obj = {
                         "Nro": index + 1,
@@ -1205,18 +1301,18 @@
                     };
                     dataVentaDet.Data.push(obj);
                 });
-    
+     
                 LoadVentasSucursales(dataVentaDet);
             }
             app.CallAjax(method, url, data, fnDoneCallback);
         }
-    
+     
         function FillTableStockMovimiento(data) {
             dataRegMov = { Data: [] };
             var obj = {
                 "IdVentaSucursal": data
             };
-    
+     
             var method = "POST";
             var url = "Venta/GetStockMovimiento";
             var data = obj;
@@ -1237,11 +1333,11 @@
             }
             app.CallAjax(method, url, data, fnDoneCallback);
         }
-    
+     
         function EliminarVenta(row) {
             var fnAceptarCallback = function () {
                 var data = app.GetValueRowCellOfDataTable(tblListadoVentas, row);
-    
+     
                 var obj = {
                     "IdVenta": data.IdVenta,
                     "Estado": 1

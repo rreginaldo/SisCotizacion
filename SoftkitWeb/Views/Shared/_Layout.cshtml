@@ -4,9 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SoftkitWeb</title>
-    @*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    *@    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SoftkitWeb.styles.css" asp-append-version="true" />*@
+
+    @*     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="~/lib/adminlte/plugins/fontawesome-free/css/all.min.css">
@@ -39,6 +38,11 @@
     <link rel="stylesheet" href="~/lib/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="~/lib/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link href="~/lib/adminlte/plugins/datatables-select/css/select.bootstrap4.min.css" rel="stylesheet" />
+
+    <!-- adminlte -->
+    <link href="~/lib/adminlte/dist/css/adminlte.min.css" rel="stylesheet" />
+    <link href="~/css/_all-skins.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -100,7 +104,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" id="mainContent">
             @RenderBody()
         </div>
         <!-- /.content-wrapper -->
@@ -111,14 +115,11 @@
             </div>
             <strong>Copyright &copy; 2014-2021 <a href="#">Softwit Web</a>.</strong> All rights reserved.
         </footer>
-
-        
-        <partial name="_LayoutModals" />
-          
- 
     </div>
     <!-- ./wrapper -->
- 
+    <!-- Modales -->
+    <partial name="_LayoutModals" />
+
     <!-- jQuery -->
     <script src="~/lib/adminlte/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
@@ -127,6 +128,7 @@
     <script src="~/lib/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- Select2 -->
     <script src="~/lib/adminlte/plugins/select2/js/select2.full.min.js"></script>
+    <script src="~/lib/adminlte/plugins/select2/js/i18n/es.js"></script>
     <!-- Bootstrap4 Duallistbox -->
     <script src="~/lib/adminlte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
     <!-- InputMask -->
@@ -144,7 +146,7 @@
     <!-- BS-Stepper -->
     <script src="~/lib/adminlte/plugins/bs-stepper/js/bs-stepper.min.js"></script>
     <!-- dropzonejs -->
-    <script src="~/lib/adminlte/plugins/dropzone/min/dropzone.min.js"></script> 
+    <script src="~/lib/adminlte/plugins/dropzone/min/dropzone.min.js"></script>
     <!-- DataTables  & Plugins -->
     <script src="~/lib/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="~/lib/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -160,6 +162,9 @@
     <script src="~/lib/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="~/lib/adminlte/plugins/datatables-select/js/datatables.select.min.js"></script>
     <script src="~/lib/adminlte/plugins/datatables-select/js/select.bootstrap4.min.js"></script>
+    <!-- jquery-validation -->
+    <script src="~/lib/adminlte/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/lib/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/lib/adminlte/dist/js/adminlte.min.js"></script>
 

@@ -28,9 +28,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <button id="btnBC" type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-BC"><i class="fas fa-search-plus"></i> Buscar Cotización</button>
+                            <button id="btnBC" type="button" class="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i> Buscar Cotización</button>
                             <button id="btnNC" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nueva Cotización</button>
-                            <button id="btnVR" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-R"><i class="far fa-eye"></i> Ver Reglas</button>
+                            <button id="btnVR" type="button" class="btn btn-sm btn-info"><i class="far fa-eye"></i> Ver Reglas</button>
                         </div>
                     </div>
                 </div>
@@ -49,96 +49,98 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <form id="formDC">
+                            <input type="hidden" id="idCliente" value="0" />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button id="btnCB" type="button" class="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i> Buscar Cliente</button>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <button id="btnCB" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-BCL"><i class="fas fa-search-plus"></i> Buscar Cliente</button>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="txtRucDC">RUC:</label>
+                                        <input type="text" name="ruc" class="form-control form-control-sm" id="txtRucDC" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="txtRSDC">Razon Social:</label>
+                                        <input type="text" name="razonSocial" class="form-control form-control-sm" id="txtRSDC" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="txtDDC">Dirección:</label>
+                                        <input type="text" name="direccion" class="form-control form-control-sm" id="txtDDC" readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="txtRucDC">RUC:</label>
-                                    <input type="text" class="form-control form-control-sm" id="txtRucDC" readonly>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="txtFechaDC">Fecha:</label>
+                                        <div class="input-group date miDatetimePicker" id="fechaDC" data-target-input="nearest">
+                                            <input id="txtFechaDC" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaDC" readonly>
+                                            <div class="input-group-append" data-target="#fechaDC" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="cboMonedaDC">Moneda:</label>
+                                        <select id="cboMonedaDC" class="form-control select2" style="width: 100%;">
+                                            <option selected="selected">MN</option>
+                                            <option>MN</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="txtRSDC">Razon Social:</label>
-                                    <input type="text" class="form-control form-control-sm" id="txtRSDC" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="txtDDC">Dirección:</label>
-                                    <input type="text" class="form-control form-control-sm" id="txtDDC" readonly>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="txtFechaDC">Fecha:</label>
-                                    <div class="input-group date miDatetimePicker" id="fechaDC" data-target-input="nearest">
-                                        <input id="txtFechaDC" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaDC" readonly>
-                                        <div class="input-group-append" data-target="#fechaDC" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button id="btnAgregar" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-AP"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                        <button id="btnQuitar" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Quitar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body table-responsive p-0" style="height: 300px;">
+                                            <table id="tablaDC" class="table table-head-fixed text-nowrap table-bordered table-striped table-hover table-condensed" style="width:100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Item</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Código</th>
+                                                        <th>Descripción</th>
+                                                        <th>Precio Cotizado</th>
+                                                        <th>Marca</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="cboMonedaDC">Moneda:</label>
-                                    <select id="cboMonedaDC" class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">MN</option>
-                                        <option>MN</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <button id="btnAgregar" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-AP"><i class="fas fa-plus-circle"></i> Agregar</button>
-                                    <button id="btnQuitar" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Quitar</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body table-responsive p-0" style="height: 300px;">
-                                        <table id="tablaDC" class="table table-head-fixed text-nowrap table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Item</th>
-                                                    <th>Cantidad</th>
-                                                    <th>Código</th>
-                                                    <th>Descripción</th>
-                                                    <th>Precio Cotizado</th>
-                                                    <th>Marca</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button id="btnGCDC" type="submit" class="btn btn-sm btn-success"><i class="far fa-save"></i> Guardar Cotización</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <button id="btnDC" class="btn btn-sm btn-success"><i class="far fa-save"></i> Guardar Cotización</button>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -195,7 +197,7 @@
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body table-responsive p-0" style="height: 300px;">
-                                                    <table id="tablaPD" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                    <table id="tablaPD" class="table table-head-fixed text-nowrap table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Item</th>
@@ -246,7 +248,7 @@
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body table-responsive p-0" style="height: 300px;">
-                                                    <table id="tablaP1" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                    <table id="tablaP1" class="table table-head-fixed text-nowrap table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Item</th>
@@ -300,7 +302,7 @@
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body table-responsive p-0" style="height: 300px;">
-                                                    <table id="tablaP2" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                    <table id="tablaP2" class="table table-head-fixed text-nowrap table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Item</th>
@@ -351,7 +353,7 @@
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body table-responsive p-0" style="height: 300px;">
-                                                    <table id="tablaP3" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                    <table id="tablaP3" class="table table-head-fixed text-nowrap table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Item</th>
@@ -405,7 +407,7 @@
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body table-responsive p-0" style="height: 300px;">
-                                                    <table id="tablaP4" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                    <table id="tablaP4" class="table table-head-fixed text-nowrap table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Item</th>
@@ -449,14 +451,14 @@
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body table-responsive p-0" style="height: 300px;">
-                                                    <table id="tablaKV" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                    <table id="tablaKV" class="table table-head-fixed text-nowrap table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Mon. Prec.</th>
                                                                 <th>Fecha</th>
                                                                 <th>Cliente</th>
                                                             </tr>
-                                                        </thead> 
+                                                        </thead>
                                                     </table>
                                                 </div>
                                             </div>
@@ -473,14 +475,14 @@
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body table-responsive p-0" style="height: 300px;">
-                                                    <table id="tablaKC" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                    <table id="tablaKC" class="table table-head-fixed text-nowrap table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Mon. Prec.</th>
                                                                 <th>Fecha</th>
                                                                 <th>Cliente</th>
                                                             </tr>
-                                                        </thead> 
+                                                        </thead>
                                                     </table>
                                                 </div>
                                             </div>
@@ -497,14 +499,14 @@
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body table-responsive p-0" style="height: 300px;">
-                                                    <table id="tablaKNI" class="table table-head-fixed text-nowrap table-bordered table-hover">
+                                                    <table id="tablaKNI" class="table table-head-fixed text-nowrap table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Mon. Prec.</th>
                                                                 <th>Fecha</th>
                                                                 <th>Proveedor</th>
                                                             </tr>
-                                                        </thead> 
+                                                        </thead>
                                                     </table>
                                                 </div>
                                             </div>
@@ -534,7 +536,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table id="M_Tabla_BC" class="table table-bordered table-hover ">
+                            <table id="M_Tabla_BC" class="table table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
@@ -585,7 +587,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table id="M_tablaBC" class="table table-bordered table-hover">
+                            <table id="M_tablaBC" class="table table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                 <thead>
                                     <tr>
                                         <th>RUC</th>
@@ -691,11 +693,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table id="M_Tabla_MA" class="table table-bordered table-hover ">
+                            <table id="M_Tabla_MA" class="table table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
-                                        <th>Descripción</th> 
+                                        <th>Descripción</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -743,7 +745,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table id="M_Tabla_MP" class="table table-bordered table-hover ">
+                            <table id="M_Tabla_MP" class="table table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
@@ -752,7 +754,7 @@
                                         <th>Telefono</th>
                                         <th>Ruc</th>
                                     </tr>
-                                </thead> 
+                                </thead>
                             </table>
                         </div>
                     </div>
@@ -860,7 +862,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive">
-                                <table id="M_Tabla_R" class="table table-bordered table-hover ">
+                                <table id="M_Tabla_R" class="table table-bordered table-striped table-hover table-condensed" style="width:100%;">
                                     <thead>
                                         <tr>
                                             <th>Grupo</th>
@@ -872,7 +874,7 @@
                                             <th>Max. Alter.</th>
                                             <th>Check</th>
                                         </tr>
-                                    </thead> 
+                                    </thead>
                                 </table>
                             </div>
                         </div>
