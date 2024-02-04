@@ -23,7 +23,7 @@ namespace SoftkitWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> ListarArticulos(string descripcion)
         {
-            var apiUrl = string.Format("Articulo/ListaArticulo?descripcion={0}", descripcion);
+            var apiUrl = string.Format("Articulo/ListaArticulo?descripcion={0}", descripcion ?? "");
             var result = await _metodosApis.GetAsync<Response<List<Articulo>>>(apiUrl);
             return Json(result);
         }
