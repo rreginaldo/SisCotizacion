@@ -107,8 +107,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <button id="btnAgregar" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Agregar</button>
-                                        <button id="btnQuitar" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Quitar</button>
-                                    </div>
+@*                                         <button id="btnQuitar" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Quitar</button>
+ *@                                    </div>
                                 </div>
                             </div>
 
@@ -125,6 +125,7 @@
                                                         <th>Descripción</th>
                                                         <th>Precio Cotizado</th>
                                                         <th>Marca</th>
+                                                        <th>Acción</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -736,10 +737,16 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <label for="M_txtBMA">Buscar:</label>
+                            <label for="M_txtBMP">Buscar:</label>
                             <input type="text" class="form-control form-control-sm" id="M_txtBMP">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="M_btnBMP" style="visibility: hidden;">Espacio vacio Espacio vacio</label>
+                            <button id="M_btnBMP" type="button" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar</button>
                         </div>
                     </div>
                 </div>

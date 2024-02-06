@@ -16,7 +16,7 @@
     var fechaDC = $('#fechaDC');
     var cboMonedaDC = $('#cboMonedaDC');
     var btnAgregar = $('#btnAgregar');
-    var btnQuitar = $('#btnQuitar');
+    //var btnQuitar = $('#btnQuitar');
     var tablaDC = $('#tablaDC');
     var btnGCDC = $('#btnGCDC');
 
@@ -103,11 +103,13 @@
     /*Modal Manteminiento de Proveedores*/
     var modalMP = $('#modal-MP');
     var M_cboOMP = $('#M_cboOMP');
-    var M_txtBMA = $('#M_txtBMA');
+    var M_txtBMP = $('#M_txtBMP');
+    var M_btnBMP = $('#M_btnBMP');
     var M_Tabla_MP = $('#M_Tabla_MP');
     var M_btnNMP = $('#M_btnNMP');
     var M_btnEMP = $('#M_btnEMP');
     var M_btnELMP = $('#M_btnELMP');
+
 
     /*Modal Cotizar Proveedor*/
     var modalCP = $('#modal-CP');
@@ -124,10 +126,6 @@
     /*Modal Reglas*/
     var modalR = $('#modal-R');
     var M_Tabla_R = $('#M_Tabla_R');
-    var M_txtCPCP = $('#M_txtCPCP');
-    var M_txtCPCP = $('#M_txtCPCP');
-    var M_txtCPCP = $('#M_txtCPCP');
-    var M_txtCPCP = $('#M_txtCPCP');
 
     var Message = {
         ObtenerTipoBusqueda: "Obteniendo los tipos de busqueda, Por favor espere...",
@@ -164,7 +162,7 @@
             var rowSelect = app.GetDataOfDataTable(M_tablaBC);
             if (rowSelect !== null) {
                 ObtenerCliente(rowSelect);
-            } 
+            }
         });
 
         // Cotizacion
@@ -178,10 +176,10 @@
             var rowSelect = app.GetDataOfDataTable(M_Tabla_BC, "CotiSofkit");
             if (rowSelect !== null) {
                 ObtenerCotizacion(rowSelect);
-            } 
+            }
         });
         btnAgregar.click(btnAgregar_click);
-        btnQuitar.click(btnQuitar_click);
+        //btnQuitar.click(btnQuitar_click);
 
         //<!-- Proveedores  -->
         //Proveedor Dealer
@@ -194,8 +192,6 @@
         btnBP3.click(btnBP3_click);
         //Proveedor 4
         btnBP4.click(btnBP4_click);
-
-
 
         //<!-- Modal Agregar Artículo  -->
         M_btnUAP.click(M_btnUAP_click);
@@ -213,10 +209,28 @@
             if (rowSelect !== null) {
                 ObtenerArticulo(rowSelect);
                 modalBCL.modal("hide");
-            } 
+            }
         });
 
         //<!-- Modal Manteminiento de Proveedores  -->
+        M_btnBMP.click(M_btnBMP_click);
+        M_btnNMP.click(M_btnNMP_click);
+        M_btnEMP.click(M_btnEMP_click);
+        M_btnELMP.click(M_btnELMP_click);
+        //M_Tabla_MP.on('dblclick', 'tr', function () {
+        //    // Desmarca las filas seleccionadas
+        //    M_Tabla_MP.$('tr.selected').removeClass('selected');
+        //    // Marca la fila actual como seleccionada
+        //    $(this).addClass('selected');
+
+        //    var rowSelect = app.GetDataOfDataTable(M_Tabla_MP);
+        //    if (rowSelect !== null) {
+        //        ObtenerProveedor(rowSelect);
+        //        modalBCL.modal("hide");
+        //    }
+        //});
+
+
         //<!-- Modal Cotizar Proveedor  -->
 
     };
@@ -277,7 +291,7 @@
         var url = "Cotizador/ListarCliente";
         var method = 'GET';
         var data = {};
-        var fnDoneCallback = function (data) { 
+        var fnDoneCallback = function (data) {
             var columns = [
                 { data: "CODIGO" },
                 { data: "RAZONSOCIAL" },
@@ -345,6 +359,10 @@
         };
         var fnDoneCallback = function (data) {
             var item = data.Data[0];
+            // Se llena el array temporal si existe una cotizacion 
+            Array.from(data.Data).forEach(function (elemento) {
+                DataArticulos.Data.push(elemento);
+            });
 
             // Cotizacion
             txtRucDC.val(item.codcliente);
@@ -387,9 +405,21 @@
             { data: "Cod" },
             { data: "NomArticulo" },
             { data: "Precio" },
-            { data: "MarcaPrecio" }
+            { data: "MarcaPrecio" },
+            { data: "item" }
         ];
-        var columnDefs = [];
+        var columnDefs = [
+            {
+                "targets": [6],
+                "visible": true,
+                "className": "text-center",
+                'render': function (data, type, full, meta) {
+                    return "<center>" +
+                        '<a class="btn btn-danger btn-xs"  title="Eliminar" href="javascript:Cotizador.EliminarArticulo(' + meta.row + ')"><i class="fa fa-trash" aria-hidden="true"></i></a>' +
+                        "</center> ";
+                }
+            }
+        ];
         app.FillDataTable(tablaDC, data, columns, columnDefs, '#tablaDC');
 
     }
@@ -542,6 +572,8 @@
     //<!-- Proveedores  -->
     //Proveedor Dealer
     function btnBD_click() {
+        M_cboOMP.val('');
+        M_txtBMP.val('');
         modalMP.modal("show");
     }
 
@@ -675,12 +707,11 @@
     //<!-- Modal Buscar Cliente -->
 
     //<!-- Modal Agregar Articulos  -->
+    var DataArticulos = { Data: [] };
     function M_btnUAP_click() {
         modalMA.modal("show");
-    //    ListarArticulos();
+        //    ListarArticulos();
     }
-
-    var DataArticulos = { Data: [] };
     function M_btnGAP_click() {
 
         var rules = {
@@ -706,19 +737,21 @@
             }
         }
         var fnDoneCallback = function () {
-            debugger;
+            var correlativo = generarCorrelativo();
+
             var obj = {
-                item: DataArticulos.Data.length + 1,
+                item: correlativo,
                 cant: M_txtCAP.val(),
                 Cod: M_txtAAP.val(),
                 NomArticulo: M_txtA2AP.val(),
                 Precio: "0",
                 MarcaPrecio: "Prueba",
+                Tipo: "N" // -> significa que es nuevo
             }
             DataArticulos.Data.push(obj);
             LlenarTablaDatosCotizacion(DataArticulos);
             modalAP.modal("hide");
-        }; 
+        };
         app.ValidaForm(Form_M_AR, rules, mensaje, fnDoneCallback);
     }
     function ObtenerArticulo(item) {
@@ -726,7 +759,31 @@
         M_txtA2AP.val(item.DESCRIPCION);
         modalMA.modal("hide");
     }
+    function EliminarArticulo(row) {
+        var data = app.GetValueRowCellOfDataTable(tablaDC, row);
 
+        var tempData = [];
+        DataArticulos.Data.map(function (v, i) {
+            tempData.push(v);
+        });
+
+        var index = $.inArray(data, tempData);
+        tempData.splice(index, 1);
+
+        DataArticulos = { Data: [] };
+        $.each(tempData, function (index, value) {
+            var obj = {
+                item: value.item,
+                cant: value.cant,
+                Cod: value.Cod,
+                NomArticulo: value.NomArticulo,
+                Precio: value.Precio,
+                MarcaPrecio: value.Precio,
+            }
+            DataArticulos.Data.push(obj);
+        });
+        LlenarTablaDatosCotizacion(DataArticulos);
+    }
 
 
 
@@ -755,12 +812,36 @@
 
             app.FillDataTableFiltros(M_Tabla_MA, data, columns, columnDefs, "#M_Tabla_MA", filtros, null, drawCallback);
 
-         };
+        };
         app.CallAjax(method, url, data, fnDoneCallback);
     }
 
     //<!-- Modal Manteminiento de Proveedores  -->
+    function M_btnBMP_click() {
+        ListarProveedores();
+    }
+    function M_btnNMP_click() {
+        var filasTabla = M_Tabla_MP.find("tbody tr");
+        if (filasTabla.length == 0) {
+            app.Message.Info("Aviso", "Por favor, seleccione un proveedor para continuar")
+            return;
+        }
 
+        var rowSelect = app.GetDataOfDataTable(M_Tabla_MP);
+        if (rowSelect !== null) {
+            modalCP.modal("show");
+            M_txtCPCP.val(rowSelect.CODIGO);
+            M_txtNPCP.val("");
+            //.val(rowSelect.DIRECCION);
+            M_txtRSCP.val(rowSelect.RAZONSOCIAL);
+            M_txtRCP.val(rowSelect.CODIGO);
+        }
+    }
+    function M_btnEMP_click() {
+        modalCP.modal("show");
+    }
+    function M_btnELMP_click() {
+    }
     function ListarProveedores() {
         var url = "Cotizador/ListarCliente";
         var method = 'GET';
@@ -770,8 +851,8 @@
                 { data: "CODIGO" },
                 { data: "RAZONSOCIAL" },
                 { data: "DIRECCION" },
-                { data: "Telefono" },
-                { data: "Ruc" },
+                { data: "TELEFONO" },
+                { data: "RUC" },
             ];
             var columnDefs = [];
             var filtros = {
@@ -779,7 +860,7 @@
             };
             var drawCallback = function (settings) {
             }
-            app.FillDataTableFiltros(M_tablaBC, data, columns, columnDefs, '#M_tablaBC', filtros, null, drawCallback);
+            app.FillDataTableFiltros(M_Tabla_MP, data, columns, columnDefs, '#M_Tabla_MP', filtros, null, drawCallback);
         };
         app.CallAjax(method, url, data, fnDoneCallback);
     }
@@ -787,6 +868,18 @@
     //<!-- Modal Cotizar Proveedor  -->
 
 
+
+    // Generando Correlativo 
+    // Función para generar un correlativo único de 4 dígitos
+    function generarCorrelativo() {
+        // Generar un número aleatorio entre 0 y 9999
+        var numeroAleatorio = Math.floor(Math.random() * 10000);
+
+        // Formatear el número para que tenga 4 dígitos
+        var correlativo = ("000" + numeroAleatorio).slice(-4);
+
+        return correlativo;
+    }
 
 
 
@@ -1504,8 +1597,8 @@
 
     return {
         EditarVenta: EditarVenta,
-        EliminarDetalleVenta: EliminarDetalleVenta
-
+        EliminarDetalleVenta: EliminarDetalleVenta,
+        EliminarArticulo: EliminarArticulo
     }
 
 
