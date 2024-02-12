@@ -393,8 +393,12 @@
             txtFechaP4.val(item.FecP4);
             LlenarTablaProveedorP4(data);
 
-            //<!-- Control Empresa  --> -- pendiente 
-            CargandoDatosControlEmpresa(data);
+            //<!-- Control Empresa  --> -- pendiente
+            // CargandoDatosControlEmpresa(data);
+            LlenarTablaKVenta(data);
+            LlenarTablaKCotizacion(data);
+            LlenarTablaKNotaIngreso(data);
+
         };
         app.CallAjax(method, url, data, fnDoneCallback);
     }
@@ -474,6 +478,44 @@
         app.FillDataTable(tablaP4, data, columns, columnDefs, '#tablaP4');
 
     }
+
+    function LlenarTablaKVenta(data) {
+        var columns = [
+            { data: "item" },
+            { data: "KVVenta" },
+            { data: "KFVenta" },
+            { data: "KCVenta" }
+        ];
+        var columnDefs = [];
+        app.FillDataTable(tablaKV, data, columns, columnDefs, '#tablaKV');
+
+    }
+
+    function LlenarTablaKCotizacion(data) {
+        var columns = [
+            { data: "item" },
+            { data: "KVCotizacion" },
+            { data: "KFCotizacion" },
+            { data: "KCCotizacion" }
+        ];
+        var columnDefs = [];
+        app.FillDataTable(tablaKC, data, columns, columnDefs, '#tablaKC');
+
+    }
+
+    function LlenarTablaKNotaIngreso(data) {
+        var columns = [
+            { data: "item" },
+            { data: "KVNotaIngreso" },
+            { data: "KFNotaIngreso" },
+            { data: "KCNotaIngreso" }
+        ];
+        var columnDefs = [];
+        app.FillDataTable(tablaKNI, data, columns, columnDefs, '#tablaKNI');
+
+    }
+
+
     function CargandoDatosControlEmpresa(data) {
         var dataKarderVenta = { Data: [] };
         var dataKardexCotizacion = { Data: [] };
