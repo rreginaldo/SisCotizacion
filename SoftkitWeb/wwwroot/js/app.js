@@ -55,7 +55,7 @@
             Text: "Seleccionar"
         };
         // Configuracion del detepicker
-        var DatePickerFormat = "dd/mm/yyyy";
+        var DatePickerFormat = "DD/MM/YYYY";
         var DatePickerAutoclose = true;
         // Configuracion del modal
         var ModalKeyboard = false;
@@ -359,7 +359,10 @@
 
                 cantidadLlamadas--;
                 if (cantidadLlamadas == 0) {
-                    Loading.Hide();
+                    // Ocultar la modal de carga después de un pequeño retraso
+                    setTimeout(function () {
+                        Loading.Hide(); 
+                    }, 500); // 500 milisegundos (0.5 segundos) de retraso
                 }
                 if (fnAlwaysCallback != null && typeof (fnAlwaysCallback) !== "undefined") {
                     fnAlwaysCallback();

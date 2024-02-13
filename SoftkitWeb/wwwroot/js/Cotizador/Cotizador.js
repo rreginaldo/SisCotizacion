@@ -7,7 +7,7 @@
 
     //Datos Cotización
     var formDC = $('#formDC');
-    var idCliente = $('#idCliente');
+    var CotiSofkit = $('#CotiSofkit');
     var btnCB = $('#btnCB');
     var txtRucDC = $('#txtRucDC');
     var txtRSDC = $('#txtRSDC');
@@ -16,7 +16,6 @@
     var fechaDC = $('#fechaDC');
     var cboMonedaDC = $('#cboMonedaDC');
     var btnAgregar = $('#btnAgregar');
-    //var btnQuitar = $('#btnQuitar');
     var tablaDC = $('#tablaDC');
     var btnGCDC = $('#btnGCDC');
 
@@ -76,8 +75,8 @@
 
     /*Modal Buscar Cliente*/
     var modalBCL = $('#modal-BCL');
-    var M_cboOrden = $('#M_cboOrden');
     var M_txtMBBC = $('#M_txtMBBC');
+    var M_btnMBBC = $('#M_btnMBBC');
     var M_tablaBC = $('#M_tablaBC');
     var M_btnNBC = $('#M_btnNBC');
     var M_btnEBC = $('#M_btnEBC');
@@ -94,7 +93,6 @@
 
     /*Modal Manteminiento de Articulos*/
     var modalMA = $('#modal-MA');
-    var M_cboOMA = $('#M_cboOMA');
     var M_txtBMA = $('#M_txtBMA');
     var M_btnBMA = $('#M_btnBMA');
     var M_Tabla_MA = $('#M_Tabla_MA');
@@ -102,7 +100,6 @@
 
     /*Modal Manteminiento de Proveedores*/
     var modalMP = $('#modal-MP');
-    var M_cboOMP = $('#M_cboOMP');
     var M_txtBMP = $('#M_txtBMP');
     var M_btnBMP = $('#M_btnBMP');
     var M_Tabla_MP = $('#M_Tabla_MP');
@@ -179,7 +176,6 @@
             }
         });
         btnAgregar.click(btnAgregar_click);
-        //btnQuitar.click(btnQuitar_click);
 
         //<!-- Proveedores  -->
         //Proveedor Dealer
@@ -217,21 +213,53 @@
         M_btnNMP.click(M_btnNMP_click);
         M_btnEMP.click(M_btnEMP_click);
         M_btnELMP.click(M_btnELMP_click);
-        //M_Tabla_MP.on('dblclick', 'tr', function () {
-        //    // Desmarca las filas seleccionadas
-        //    M_Tabla_MP.$('tr.selected').removeClass('selected');
-        //    // Marca la fila actual como seleccionada
-        //    $(this).addClass('selected');
-
-        //    var rowSelect = app.GetDataOfDataTable(M_Tabla_MP);
-        //    if (rowSelect !== null) {
-        //        ObtenerProveedor(rowSelect);
-        //        modalBCL.modal("hide");
-        //    }
-        //});
 
 
         //<!-- Modal Cotizar Proveedor  -->
+
+
+
+        // Activate an inline edit on click of a table cell
+
+
+
+
+
+
+
+
+
+
+        ////// probando el editar una celda
+        //var editor = new $.fn.dataTable.Editor({
+        //    ajax: 'tu_archivo.php', // URL del script de servidor para manejar las operaciones CRUD
+        //    table: '#miTabla', // ID de tu tabla
+        //    fields: [
+        //        { label: 'ID:', name: 'id' },
+        //        { label: 'Nombre:', name: 'nombre' },
+        //        { label: 'Descripción:', name: 'descripcion' }
+        //        // Agrega más campos según sea necesario
+        //    ]
+        //});
+
+        //var myTable = $('#tablaDC').DataTable();
+
+        //$('#tablaDC').on('click', 'tbody tr', function () {
+        //    myTable.cell(this).edit();
+        //});
+
+  
+ 
+
+        //tablaDC.on('dblclick', 'tbody td:nth-child(2)', function () {
+        //    var celda = tablaDC.cell(this); // Obtener la celda de la tabla
+
+        //    // Activar la edición de la celda
+        //    celda.edit({
+        //        onBlur: 'submit' // La edición se guarda cuando se pierde el foco de la celda
+        //    });
+        //});
+
 
     };
 
@@ -239,12 +267,12 @@
         moment.locale('es');
 
         $('.miDatetimePicker').datetimepicker({
-            format: app.Defaults.DatePickerFormat, // el formato de fecha que deseas
-            locale: 'es' // indica el idioma
+            format: 'DD/MM/YYYY', // Establece el formato de fecha como DD/MM/YYYY
+            locale: 'es', // indica el idioma
             // Puedes agregar más opciones según tus necesidades
         });
 
-        $('.miDatetimePicker input').attr('readonly', true);
+        app.Event.Disabled($('.miDatetimePicker input'));
 
     }
 
@@ -264,6 +292,12 @@
             },
             direccion: {
                 required: true,
+            },
+            fecha: {
+                required: true,
+            },
+            moneda: {
+                required: true,
             }
         };
         var mensaje = {
@@ -275,11 +309,17 @@
             },
             direccion: {
                 required: "Por favor, ingrese la dirección",
+            },
+            fecha: {
+                required: "Por favor, ingrese la fecha",
+            },
+            moneda: {
+                required: "Por favor, ingrese la moneda",
             }
         }
         var fnDoneCallback = function (data) {
-            var id = idCliente.val();
-            //if (id != "0") {
+            var id = CotiSofkit.val();
+            //if (id == "0") {
             //    GuardarCliente();
             //} else {
             //    EditarCliente();
@@ -343,6 +383,9 @@
         //txtFechaDC.val(cliente.fecha);
         //cboMonedaDC.val(cliente.Moneda).trigger('change');
 
+        ReadOnlyControles(false);
+        CotiSofkit.val("0")
+
         modalBCL.modal("hide");
     }
 
@@ -352,6 +395,9 @@
     }
     function ObtenerCotizacion(idcotizacion) {
         modalBC.modal("hide");
+        CotiSofkit.val(idcotizacion);
+        ReadOnlyControles(true);
+
         var url = "Cotizador/ObtenerCotizacion";
         var method = 'POST';
         var data = {
@@ -361,7 +407,7 @@
             var item = data.Data[0];
             // Se llena el array temporal si existe una cotizacion 
             Array.from(data.Data).forEach(function (elemento) {
-                DataArticulos.Data.push(elemento);
+                DataCotizacion.Data.push(elemento);
             });
 
             // Cotizacion
@@ -394,13 +440,37 @@
             LlenarTablaProveedorP4(data);
 
             //<!-- Control Empresa  --> -- pendiente
-            // CargandoDatosControlEmpresa(data);
             LlenarTablaKVenta(data);
             LlenarTablaKCotizacion(data);
             LlenarTablaKNotaIngreso(data);
 
         };
         app.CallAjax(method, url, data, fnDoneCallback);
+    }
+    function ReadOnlyControles(flag) {
+        if (flag) {
+            app.Event.Enable(btnBC);
+
+            app.Event.Disabled(btnCB);
+            app.Event.Disabled(txtFechaDC);
+            app.Event.Disabled(cboMonedaDC);
+            app.Event.Disabled(txtFechaPD);
+            app.Event.Disabled(txtFechaP1);
+            app.Event.Disabled(txtFechaP2);
+            app.Event.Disabled(txtFechaP3);
+            app.Event.Disabled(txtFechaP4);
+
+        } else {
+            app.Event.Disabled(btnBC);
+            app.Event.Enable(btnCB);
+            app.Event.Enable(txtFechaDC);
+            app.Event.Enable(cboMonedaDC);
+            app.Event.Enable(txtFechaPD);
+            app.Event.Enable(txtFechaP1);
+            app.Event.Enable(txtFechaP2);
+            app.Event.Enable(txtFechaP3);
+            app.Event.Enable(txtFechaP4);
+        }
     }
     function LlenarTablaDatosCotizacion(data) {
         var columns = [
@@ -478,7 +548,6 @@
         app.FillDataTable(tablaP4, data, columns, columnDefs, '#tablaP4');
 
     }
-
     function LlenarTablaKVenta(data) {
         var columns = [
             { data: "item" },
@@ -490,7 +559,6 @@
         app.FillDataTable(tablaKV, data, columns, columnDefs, '#tablaKV');
 
     }
-
     function LlenarTablaKCotizacion(data) {
         var columns = [
             { data: "item" },
@@ -502,7 +570,6 @@
         app.FillDataTable(tablaKC, data, columns, columnDefs, '#tablaKC');
 
     }
-
     function LlenarTablaKNotaIngreso(data) {
         var columns = [
             { data: "item" },
@@ -514,33 +581,66 @@
         app.FillDataTable(tablaKNI, data, columns, columnDefs, '#tablaKNI');
 
     }
-
-
     function CargandoDatosControlEmpresa(data) {
         var dataKarderVenta = { Data: [] };
         var dataKardexCotizacion = { Data: [] };
         var KardexNotaIngreso = { Data: [] };
         var deferreds = [];
 
-        $.each(data.Data, function (index, value) {
+
+        data.Data.forEach(function (v) {
+            if (v.Tipo === undefined) {
+                dataKarderVenta.Data.push({
+                    item: v.item,
+                    KVVenta: v.KVVenta,
+                    KCVenta: v.KCVenta,
+                    KFVenta: v.KFVenta
+                });
+                dataKardexCotizacion.Data.push({
+                    item: v.item,
+                    KVCotizacion: v.KVCotizacion,
+                    KCCotizacion: v.KCCotizacion,
+                    KFCotizacion: v.KFCotizacion,
+                });
+                KardexNotaIngreso.Data.push({
+                    item: v.item,
+                    KVNotaIngreso: v.KVNotaIngreso,
+                    KCNotaIngreso: v.KCNotaIngreso,
+                    KFNotaIngreso: v.KFNotaIngreso,
+                });
+            }
+        });
+        var datosKardezNuevos = data.Data.filter(function (objeto) {
+            return objeto.Tipo === "N";
+        });
+        $.each(datosKardezNuevos, function (index, value) {
             var consultaDeferred;
             var obj = {
                 codigo: value.Cod,
                 codcliente: value.codcliente
             };
             var fnDoneCallbackKV = function (r) {
+                r.Data.forEach(function (elemento) {
+                    elemento.item = value.item;
+                }); 
                 dataKarderVenta.Data = dataKarderVenta.Data.concat(r.Data);
             };
             consultaDeferred = GetKarderVenta(obj, fnDoneCallbackKV);
             deferreds.push(consultaDeferred);
 
             var fnDoneCallbackKC = function (r) {
+                 r.Data.forEach(function (elemento) {
+                    elemento.item = value.item;
+                }); 
                 dataKardexCotizacion.Data = dataKardexCotizacion.Data.concat(r.Data);
             };
             consultaDeferred = GetKardexCotizacion(obj, fnDoneCallbackKC);
             deferreds.push(consultaDeferred);
 
             var fnDoneCallbackNI = function (r) {
+                r.Data.forEach(function (elemento) {
+                    elemento.item = value.item;
+                }); 
                 KardexNotaIngreso.Data = KardexNotaIngreso.Data.concat(r.Data);
             };
             consultaDeferred = GetKardexNotaIngreso(obj, fnDoneCallbackNI);
@@ -551,24 +651,28 @@
         // Cuando todas las consultas AJAX hayan terminado, resuelve la promesa
         $.when.apply($, deferreds).then(function () {
             //console.log("Todas las consultas AJAX y el bucle han terminado");
+
             LlenarTablaKarderVenta(dataKarderVenta);
             LlenarTablaKardexCotizacion(dataKardexCotizacion);
             LlenarTablaKardexNotaIngreso(KardexNotaIngreso);
-        }).catch(function (error) {
-            /* debugger;*/
-            // El código en caso de error
-            //app.Message.Error("Error en Control Empresa", error);
 
+        }).catch(function (error) {
+            // El código en caso de error
+            //app.Message.Error("Error en Control Empresa", error); 
         });
     }
     function btnAgregar_click() {
-        modalAP.modal("show");
-        M_txtAAP.val("");
-        M_txtA2AP.val("");
-        M_txtCAP.val("");
-    }
-    function btnQuitar_click() {
-
+        var ruc = txtRucDC.val();
+        var fecha = txtFechaDC.val();
+        var moneda = cboMonedaDC.val();
+        if (ruc != "" && fecha != "" && moneda != "") {
+            modalAP.modal("show");
+            M_txtAAP.val("");
+            M_txtA2AP.val("");
+            M_txtCAP.val("");
+        } else {
+            app.Message.Info("Aviso", "Por favor, ingrese un cliente, fecha y moneda para poder agregar un articulo.")
+        }
     }
 
     // Regla 
@@ -614,25 +718,23 @@
     //<!-- Proveedores  -->
     //Proveedor Dealer
     function btnBD_click() {
-        M_cboOMP.val('');
-        M_txtBMP.val('');
-        modalMP.modal("show");
+        AbrirModalProveedores();
     }
 
     function btnBP1_click() {
-        modalMP.modal("show");
+        AbrirModalProveedores();
     }
 
     function btnBP2_click() {
-        modalMP.modal("show");
+        AbrirModalProveedores();
     }
 
     function btnBP3_click() {
-        modalMP.modal("show");
+        AbrirModalProveedores();
     }
 
     function btnBP4_click() {
-        modalMP.modal("show");
+        AbrirModalProveedores();
     }
 
     //<!-- Control Empresa  -->
@@ -644,13 +746,14 @@
     }
     function LlenarTablaKarderVenta(data) {
         var columns = [
+            { data: "item" },
             { data: "PRECIO" },
             { data: "FECHA" },
             { data: "CLIENTE" }
         ];
         var columnDefs = [
             {
-                "targets": [1],
+                "targets": [2],
                 'render': function (data, type, full, meta) {
                     var fechaFormateada = moment(data, 'D/M/YYYY HH:mm:ss').format('DD/MM/YYYY');
                     return fechaFormateada;
@@ -667,13 +770,14 @@
     }
     function LlenarTablaKardexCotizacion(data) {
         var columns = [
+            { data: "item" },
             { data: "PRECIO" },
             { data: "FECHA" },
             { data: "CLIENTE" }
         ];
         var columnDefs = [
             {
-                "targets": [1],
+                "targets": [2],
                 'render': function (data, type, full, meta) {
                     var fechaFormateada = moment(data, 'D/M/YYYY HH:mm:ss').format('DD/MM/YYYY');
                     return fechaFormateada;
@@ -690,13 +794,14 @@
     }
     function LlenarTablaKardexNotaIngreso(data) {
         var columns = [
+            { data: "item" },
             { data: "PRECIO" },
             { data: "FECHA" },
             { data: "CLIENTE" }
         ];
         var columnDefs = [
             {
-                "targets": [1],
+                "targets": [2],
                 'render': function (data, type, full, meta) {
                     var fechaFormateada = moment(data, 'D/M/YYYY HH:mm:ss').format('DD/MM/YYYY');
                     return fechaFormateada;
@@ -749,10 +854,10 @@
     //<!-- Modal Buscar Cliente -->
 
     //<!-- Modal Agregar Articulos  -->
-    var DataArticulos = { Data: [] };
+    var DataCotizacion = { Data: [] };
     function M_btnUAP_click() {
         modalMA.modal("show");
-        //    ListarArticulos();
+        ListarArticulos();
     }
     function M_btnGAP_click() {
 
@@ -779,20 +884,53 @@
             }
         }
         var fnDoneCallback = function () {
+            modalAP.modal("hide");
             var correlativo = generarCorrelativo();
 
             var obj = {
-                item: correlativo,
-                cant: M_txtCAP.val(),
-                Cod: M_txtAAP.val(),
-                NomArticulo: M_txtA2AP.val(),
-                Precio: "0",
-                MarcaPrecio: "Prueba",
-                Tipo: "N" // -> significa que es nuevo
+                Tipo: "N", // -> significa que es nuevo
+                //Cliente
+                "codcliente": txtRucDC.val().trim(),
+                "Cliente": txtRSDC.val().trim(),
+                "dircliente": txtDDC.val().trim(),
+                "item": correlativo,
+                "cant": M_txtCAP.val().trim(),
+                "Cod": M_txtAAP.val().trim(),
+                "NomArticulo": M_txtA2AP.val().trim(),
+                "fecha": txtFechaDC.val().trim(),
+                "Moneda": cboMonedaDC.val(),
+                "Precio": 0,
+                "MarcaPrecio": "",
+
+                // DEALER
+                "PrecioD": 0,
+                "MarcaD": "",
+
+                // Proveedor 1
+                "PrecioP1": 0,
+                "MarcaP1": "",
+
+                // Proveedor 2
+                "PrecioP2": 0,
+                "MarcaP2": "",
+
+                // Proveedor 3
+                "PrecioP3": 0,
+                "MarcaP3": "",
+
+                // Proveedor 4
+                "PrecioP4": 0,
+                "MarcaP4": "",
             }
-            DataArticulos.Data.push(obj);
-            LlenarTablaDatosCotizacion(DataArticulos);
-            modalAP.modal("hide");
+            DataCotizacion.Data.push(obj);
+
+            LlenarTablaDatosCotizacion(DataCotizacion);
+            LlenarTablaProveedorDealer(DataCotizacion);
+            LlenarTablaProveedorP1(DataCotizacion);
+            LlenarTablaProveedorP2(DataCotizacion);
+            LlenarTablaProveedorP3(DataCotizacion);
+            LlenarTablaProveedorP4(DataCotizacion);
+            CargandoDatosControlEmpresa(DataCotizacion);
         };
         app.ValidaForm(Form_M_AR, rules, mensaje, fnDoneCallback);
     }
@@ -802,30 +940,96 @@
         modalMA.modal("hide");
     }
     function EliminarArticulo(row) {
-        var data = app.GetValueRowCellOfDataTable(tablaDC, row);
+        var fnAceptarCallback = function () {
+            var deferreds = [];
+            var data = app.GetValueRowCellOfDataTable(tablaDC, row);
 
-        var tempData = [];
-        DataArticulos.Data.map(function (v, i) {
-            tempData.push(v);
-        });
+            var tempData = [];
+            DataCotizacion.Data.map(function (v, i) {
+                tempData.push(v);
+            });
 
-        var index = $.inArray(data, tempData);
-        tempData.splice(index, 1);
+            var index = $.inArray(data, tempData);
+            tempData.splice(index, 1);
 
-        DataArticulos = { Data: [] };
-        $.each(tempData, function (index, value) {
-            var obj = {
-                item: value.item,
-                cant: value.cant,
-                Cod: value.Cod,
-                NomArticulo: value.NomArticulo,
-                Precio: value.Precio,
-                MarcaPrecio: value.Precio,
-            }
-            DataArticulos.Data.push(obj);
-        });
-        LlenarTablaDatosCotizacion(DataArticulos);
+            DataCotizacion = { Data: [] };
+            $.each(tempData, function (index, value) {
+                var deferred = $.Deferred();
+                var obj = {
+                    Tipo: value.Tipo,
+                    //Cliente
+                    "codcliente": value.codcliente,
+                    "Cliente": value.Cliente,
+                    "dircliente": value.dircliente,
+                    "item": value.item,
+                    "cant": value.cant,
+                    "Cod": value.Cod,
+                    "NomArticulo": value.NomArticulo,
+                    "fecha": value.fecha,
+                    "Moneda": value.Moneda,
+                    "Precio": value.Precio,
+                    "MarcaPrecio": value.MarcaPrecio,
+
+                    // DEALER
+                    "PrecioD": value.PrecioD,
+                    "MarcaD": value.MarcaD,
+
+                    // Proveedor 1
+                    "PrecioP1": value.PrecioP1,
+                    "MarcaP1": value.MarcaP1,
+
+                    // Proveedor 2
+                    "PrecioP2": value.PrecioP2,
+                    "MarcaP2": value.MarcaP2,
+
+                    // Proveedor 3
+                    "PrecioP3": value.PrecioP3,
+                    "MarcaP3": value.MarcaP3,
+
+                    // Proveedor 4
+                    "PrecioP4": value.PrecioP4,
+                    "MarcaP4": value.MarcaP4,
+
+                    // kardex
+                    "KVVenta": value.KVVenta,
+                    "KCVenta": value.KCVenta,
+                    "KFVenta": value.KFVenta,
+                    "KVCotizacion": value.KVCotizacion,
+                    "KCCotizacion": value.KCCotizacion,
+                    "KFCotizacion": value.KFCotizacion,
+                    "KVNotaIngreso": value.KVNotaIngreso,
+                    "KCNotaIngreso": value.KCNotaIngreso,
+                    "KFNotaIngreso": value.KFNotaIngreso
+
+                }
+                deferred.resolve()
+                DataCotizacion.Data.push(obj);
+                deferreds.push(deferred.promise());
+            });
+
+            $.when.apply($, deferreds).then(function () {
+
+                LlenarTablaDatosCotizacion(DataCotizacion);
+                LlenarTablaProveedorDealer(DataCotizacion);
+                LlenarTablaProveedorP1(DataCotizacion);
+                LlenarTablaProveedorP2(DataCotizacion);
+                LlenarTablaProveedorP3(DataCotizacion);
+                LlenarTablaProveedorP4(DataCotizacion);
+                LlenarTablaKVenta(DataCotizacion);
+                LlenarTablaKCotizacion(DataCotizacion);
+                LlenarTablaKNotaIngreso(DataCotizacion);
+            }).catch(function (error) {
+                /* debugger;*/
+                // El código en caso de error
+                //app.Message.Error("Error en Control Empresa", error);
+            });
+
+        };
+
+        app.Message.Confirm("Confirmar", "¿Estas seguro de eliminar el registro?", "Aceptar", "Cancelar", fnAceptarCallback);
+
     }
+
 
 
 
@@ -884,6 +1088,16 @@
     }
     function M_btnELMP_click() {
     }
+
+    function AbrirModalProveedores() {
+        var ruc = txtRucDC.val();
+        if (ruc != "") {
+            M_txtBMP.val('');
+            modalMP.modal("show");
+        } else {
+            app.Message.Info("Aviso", "Por favor, ingrese un cliente para poder agregar un articulo.")
+        }
+    }
     function ListarProveedores() {
         var url = "Cotizador/ListarCliente";
         var method = 'GET';
@@ -905,6 +1119,7 @@
             app.FillDataTableFiltros(M_Tabla_MP, data, columns, columnDefs, '#M_Tabla_MP', filtros, null, drawCallback);
         };
         app.CallAjax(method, url, data, fnDoneCallback);
+
     }
 
     //<!-- Modal Cotizar Proveedor  -->

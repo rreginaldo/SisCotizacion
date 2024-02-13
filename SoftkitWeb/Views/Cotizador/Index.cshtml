@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <button id="btnBC" type="button" class="btn btn-sm btn-primary"><i class="fas fa-search-plus"></i> Buscar Cotización</button>
+                            <button id="btnBC" type="button" class="btn btn-sm btn-warning"><i class="fas fa-search-plus"></i> Buscar Cotización</button>
                             <button id="btnNC" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nueva Cotización</button>
                             <button id="btnVR" type="button" class="btn btn-sm btn-info"><i class="far fa-eye"></i> Ver Reglas</button>
                         </div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="card-body">
                         <form id="formDC">
-                            <input type="hidden" id="idCliente" value="0" />
+                            <input type="hidden" id="CotiSofkit" value="0" />
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -85,19 +85,19 @@
                                     <div class="form-group">
                                         <label for="txtFechaDC">Fecha:</label>
                                         <div class="input-group date miDatetimePicker" id="fechaDC" data-target-input="nearest">
-                                            <input id="txtFechaDC" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaDC" readonly>
+                                            <input id="txtFechaDC" name="fecha" type="text" class="form-control form-control-sm datetimepicker-input" data-target="#fechaDC">
                                             <div class="input-group-append" data-target="#fechaDC" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
-                                        </div>
+                                        </div> 
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="cboMonedaDC">Moneda:</label>
-                                        <select id="cboMonedaDC" class="form-control select2" style="width: 100%;">
-                                            <option selected="selected">MN</option>
-                                            <option>MN</option>
+                                        <select id="cboMonedaDC" name="moneda" class="form-control select2" style="width: 100%;">
+                                            <option id="MN">MN</option>
+                                            <option id="ME">ME</option>
                                         </select>
                                     </div>
                                 </div>
@@ -107,8 +107,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <button id="btnAgregar" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Agregar</button>
-@*                                         <button id="btnQuitar" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Quitar</button>
- *@                                    </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -569,25 +568,21 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="M_cboOrden">Orden:</label>
-                            <select id="M_cboOrden" class="form-control select2" style="width: 100%;">
-                                <option selected="selected"></option>
-                                <option>RUC/DNI</option>
-                                <option>NOMBRE</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="row"> 
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label for="M_txtMBBC">Buscar:</label>
+                            <label for="M_txtMBBC">Descripción:</label>
                             <input type="text" class="form-control form-control-sm" id="M_txtMBBC">
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="M_btnMBBC" style="visibility: hidden;">Espacio vacio Espacio vacio</label>
+                            <button id="M_btnMBBC" type="button" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i> Buscar</button>
+                        </div>
+                    </div>
                 </div>
-
+                 
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
@@ -605,11 +600,11 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <div class="form-group">
+            @*     <div class="form-group">
                     <button id="M_btnNBC" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nuevo</button>
                     <button id="M_btnEBC" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
                     <button id="M_btnELBC" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                </div>
+                </div> *@
 
                 <button type="button" class="btn btn-sm btn-default" data-dismiss="modal"> <i class="fas fa-sign-out-alt"></i> Salir</button>
             </div>
@@ -637,7 +632,7 @@
                                     <div class="input-group-prepend">
                                         <button id="M_btnUAP" type="button" class="btn btn-danger"><i class="fas fa-inbox"></i></button>
                                     </div>
-                                    <input id="M_txtAAP" name="codigo" type="text" class="form-control form-control-sm">
+                                    <input id="M_txtAAP" name="codigo" type="text" class="form-control form-control-sm" >
                                 </div>
                             </div>
                         </div>
@@ -656,10 +651,10 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button id="M_btnGAP" type="submit" class="btn btn-sm btn-success" ><i class="fas fa-plus-circle"></i> Guardar</button>
+                    <button id="M_btnGAP" type="submit" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Guardar</button>
                 </div>
-            </form> 
-        </div> 
+            </form>
+        </div>
     </div>
 </div>
 
@@ -674,18 +669,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4">
+                <div class="row"> 
+                    <div class="col-md-8">
                         <div class="form-group">
-                            <label for="M_cboOMA">Orden:</label>
-                            <select id="M_cboOMA" class="form-control select2" style="width: 100%;">
-                                <option selected="selected">Descripción</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="M_txtBMA">Buscar:</label>
+                            <label for="M_txtBMA">Descripción:</label>
                             <input type="text" class="form-control form-control-sm" id="M_txtBMA">
                         </div>
                     </div>
@@ -729,20 +716,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4">
+                <div class="row"> 
+                    <div class="col-md-8">
                         <div class="form-group">
-                            <label for="M_cboOMP">Orden:</label>
-                            <select id="M_cboOMP" class="form-control select2" style="width: 100%;">
-                                <option selected="selected"> </option>
-                                <option>RUC/DNI</option>
-                                <option>NOMBRE</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="M_txtBMP">Buscar:</label>
+                            <label for="M_txtBMP">Descripción:</label>
                             <input type="text" class="form-control form-control-sm" id="M_txtBMP">
                         </div>
                     </div>
@@ -774,11 +751,11 @@
 
             </div>
             <div class="modal-footer justify-content-between">
-                <div class="form-group">
+             @*    <div class="form-group">
                     <button id="M_btnNMP" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nuevo</button>
                     <button id="M_btnEMP" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
                     <button id="M_btnELMP" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                </div>
+                </div> *@
 
                 <button id="M_btnSMA" type="button" class="btn btn-sm btn-success" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Salir</button>
             </div>
