@@ -2,8 +2,8 @@
 {
     public class Articulo
     {
-        public string CODIGO { get; set; }
-        public string DESCRIPCION { get; set; }
+        public string? CODIGO { get; set; }
+        public string? DESCRIPCION { get; set; }
      
     }
 }

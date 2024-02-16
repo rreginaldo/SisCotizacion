@@ -216,51 +216,8 @@
 
 
         //<!-- Modal Cotizar Proveedor  -->
-
-
-
-        // Activate an inline edit on click of a table cell
-
-
-
-
-
-
-
-
-
-
-        ////// probando el editar una celda
-        //var editor = new $.fn.dataTable.Editor({
-        //    ajax: 'tu_archivo.php', // URL del script de servidor para manejar las operaciones CRUD
-        //    table: '#miTabla', // ID de tu tabla
-        //    fields: [
-        //        { label: 'ID:', name: 'id' },
-        //        { label: 'Nombre:', name: 'nombre' },
-        //        { label: 'Descripción:', name: 'descripcion' }
-        //        // Agrega más campos según sea necesario
-        //    ]
-        //});
-
-        //var myTable = $('#tablaDC').DataTable();
-
-        //$('#tablaDC').on('click', 'tbody tr', function () {
-        //    myTable.cell(this).edit();
-        //});
-
-  
- 
-
-        //tablaDC.on('dblclick', 'tbody td:nth-child(2)', function () {
-        //    var celda = tablaDC.cell(this); // Obtener la celda de la tabla
-
-        //    // Activar la edición de la celda
-        //    celda.edit({
-        //        onBlur: 'submit' // La edición se guarda cuando se pierde el foco de la celda
-        //    });
-        //});
-
-
+         
+        EditarCeldasTabla();
     };
 
     function CargarControlesDP() {
@@ -276,6 +233,26 @@
 
     }
 
+    function EditarCeldasTabla() {
+        tablaDC.on('click', 'tbody td.editable', function () {  // Habilitar la edición en línea al hacer clic en una celda
+            $(this).attr('contenteditable', true);
+        }).on('keypress', 'tbody td.editable[data-type="numeric"]', function (e) { // Validar la entrada para la primera columna (solo números)
+            var charCode = (e.which) ? e.which : e.keyCode;
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+        }).on('keypress blur', 'tbody td.editable', function (e) { // Guardar cambios al presionar Enter o salir de la celda
+
+            if (e.type === 'keypress' && e.keyCode !== 13) {
+                return;
+            }
+            var table = tablaDC.DataTable();
+            var newData = $(this).text();
+            table.cell(this).data(newData).draw(); // Guardar los cambios en la tabla DataTables
+            $(this).removeAttr('contenteditable'); // Deshabilitar la edición en línea
+        });
+
+    }
 
     // Cliente 
     function btnCB_click() {
@@ -492,9 +469,26 @@
                         '<a class="btn btn-danger btn-xs"  title="Eliminar" href="javascript:Cotizador.EliminarArticulo(' + meta.row + ')"><i class="fa fa-trash" aria-hidden="true"></i></a>' +
                         "</center> ";
                 }
-            }
+            },
+            {
+                targets: 4,
+                className: 'editable',
+                createdCell: function (td, cellData, rowData, row, col) {
+                    $(td).attr('data-type', 'numeric');
+                }
+            },
+            {
+                targets: 5,
+                className: 'editable',
+                createdCell: function (td, cellData, rowData, row, col) {
+                    $(td).attr('data-type', 'alphanumeric');
+                }
+            } 
         ];
-        app.FillDataTable(tablaDC, data, columns, columnDefs, '#tablaDC');
+
+        var drawCallback = function () {
+        }
+        app.FillDataTable(tablaDC, data, columns, columnDefs, '#tablaDC', null, null, drawCallback);
 
     }
     function LlenarTablaProveedorDealer(data) {
@@ -622,16 +616,16 @@
             var fnDoneCallbackKV = function (r) {
                 r.Data.forEach(function (elemento) {
                     elemento.item = value.item;
-                }); 
+                });
                 dataKarderVenta.Data = dataKarderVenta.Data.concat(r.Data);
             };
             consultaDeferred = GetKarderVenta(obj, fnDoneCallbackKV);
             deferreds.push(consultaDeferred);
 
             var fnDoneCallbackKC = function (r) {
-                 r.Data.forEach(function (elemento) {
+                r.Data.forEach(function (elemento) {
                     elemento.item = value.item;
-                }); 
+                });
                 dataKardexCotizacion.Data = dataKardexCotizacion.Data.concat(r.Data);
             };
             consultaDeferred = GetKardexCotizacion(obj, fnDoneCallbackKC);
@@ -640,7 +634,7 @@
             var fnDoneCallbackNI = function (r) {
                 r.Data.forEach(function (elemento) {
                     elemento.item = value.item;
-                }); 
+                });
                 KardexNotaIngreso.Data = KardexNotaIngreso.Data.concat(r.Data);
             };
             consultaDeferred = GetKardexNotaIngreso(obj, fnDoneCallbackNI);
