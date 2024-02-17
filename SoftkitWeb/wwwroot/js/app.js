@@ -857,6 +857,26 @@
         });
     }
 
+    function EditarTable(selector) {
+        selector.on('click', 'tbody td.editable', function () {  // Habilitar la edición en línea al hacer clic en una celda
+            $(this).attr('contenteditable', true);
+        }).on('keypress', 'tbody td.editable[data-type="numeric"]', function (e) { // Validar la entrada para la primera columna (solo números)
+            var charCode = (e.which) ? e.which : e.keyCode;
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+        }).on('keypress blur', 'tbody td.editable', function (e) { // Guardar cambios al presionar Enter o salir de la celda
+
+            if (e.type === 'keypress' && e.keyCode !== 13) {
+                return;
+            }
+            var table = selector.DataTable();
+            var newData = $(this).text();
+            table.cell(this).data(newData).draw(); // Guardar los cambios en la tabla DataTables
+            $(this).removeAttr('contenteditable'); // Deshabilitar la edición en línea
+        });
+    }
+
     return {
         PathName: PathName,
         BaseSiteUrl: BaseSiteUrl,
@@ -881,7 +901,8 @@
         GetDataOfDataTable: GetDataOfDataTable,
         ConvertIntToDatetimeDT: ConvertIntToDatetimeDT,
         FillDataTableAjaxPaging: FillDataTableAjaxPaging,
-        ValidaForm: ValidaForm
+        ValidaForm: ValidaForm,
+        EditarTable: EditarTable
     };
 
 
