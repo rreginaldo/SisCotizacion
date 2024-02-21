@@ -89,7 +89,7 @@
                                             <div class="input-group-append" data-target="#fechaDC" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -172,6 +172,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input id="hiddenPCD" type="hidden" value="" />
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -223,6 +224,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input id="hiddenPC1" type="hidden" value="" />
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -277,6 +279,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input id="hiddenPC2" type="hidden" value="" />
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -328,6 +331,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input id="hiddenPC3" type="hidden" value="" />
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -383,6 +387,7 @@
                                         </div>
                                     </div>
 
+                                    <input id="hiddenPC4" type="hidden" value="" />
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -568,7 +573,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row"> 
+                <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="M_txtMBBC">Descripción:</label>
@@ -582,7 +587,7 @@
                         </div>
                     </div>
                 </div>
-                 
+
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
@@ -600,10 +605,10 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-            @*     <div class="form-group">
-                    <button id="M_btnNBC" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nuevo</button>
-                    <button id="M_btnEBC" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
-                    <button id="M_btnELBC" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                @*     <div class="form-group">
+                <button id="M_btnNBC" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nuevo</button>
+                <button id="M_btnEBC" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
+                <button id="M_btnELBC" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                 </div> *@
 
                 <button type="button" class="btn btn-sm btn-default" data-dismiss="modal"> <i class="fas fa-sign-out-alt"></i> Salir</button>
@@ -632,7 +637,7 @@
                                     <div class="input-group-prepend">
                                         <button id="M_btnUAP" type="button" class="btn btn-danger"><i class="fas fa-inbox"></i></button>
                                     </div>
-                                    <input id="M_txtAAP" name="codigo" type="text" class="form-control form-control-sm" >
+                                    <input id="M_txtAAP" name="codigo" type="text" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>
@@ -669,7 +674,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row"> 
+                <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="M_txtBMA">Descripción:</label>
@@ -716,7 +721,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row"> 
+                <input id="hiddenMP" type="hidden" value="" />
+                <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="M_txtBMP">Descripción:</label>
@@ -751,10 +757,10 @@
 
             </div>
             <div class="modal-footer justify-content-between">
-             @*    <div class="form-group">
-                    <button id="M_btnNMP" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nuevo</button>
-                    <button id="M_btnEMP" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
-                    <button id="M_btnELMP" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                @*    <div class="form-group">
+                <button id="M_btnNMP" type="button" class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Nuevo</button>
+                <button id="M_btnEMP" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
+                <button id="M_btnELMP" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                 </div> *@
 
                 <button id="M_btnSMA" type="button" class="btn btn-sm btn-success" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Salir</button>

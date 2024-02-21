@@ -27,6 +27,7 @@
     var fechaPD = $('#fechaPD');
     var txtFechaPD = $('#txtFechaPD');
     var tablaPD = $('#tablaPD');
+    var hiddenPCD = $('#hiddenPCD');
 
     //Proveedor 1
     var btnBP1 = $('#btnBP1');
@@ -34,6 +35,7 @@
     var fechaP1 = $('#fechaP1');
     var txtFechaP1 = $('#txtFechaP1');
     var tablaP1 = $('#tablaP1');
+    var hiddenPC1 = $('#hiddenPC1');
 
     //Proveedor 2
     var btnBP2 = $('#btnBP2');
@@ -41,6 +43,7 @@
     var fechaP2 = $('#fechaP2');
     var txtFechaP2 = $('#txtFechaP2');
     var tablaP2 = $('#tablaP2');
+    var hiddenPC2 = $('#hiddenPC2');
 
     //Proveedor 3
     var btnBP3 = $('#btnBP3');
@@ -48,6 +51,7 @@
     var fechaP3 = $('#fechaP3');
     var txtFechaP3 = $('#txtFechaP3');
     var tablaP3 = $('#tablaP3');
+    var hiddenPC3 = $('#hiddenPC3');
 
     //Proveedor 4
     var btnBP4 = $('#btnBP4');
@@ -55,6 +59,7 @@
     var fechaP4 = $('#fechaP4');
     var txtFechaP4 = $('#txtFechaP4');
     var tablaP4 = $('#tablaP4');
+    var hiddenPC4 = $('#hiddenPC4');
 
     /*Control Empresa*/
     /*Kardex Venta */
@@ -106,7 +111,7 @@
     var M_btnNMP = $('#M_btnNMP');
     var M_btnEMP = $('#M_btnEMP');
     var M_btnELMP = $('#M_btnELMP');
-
+    var hiddenMP = $('#hiddenMP');
 
     /*Modal Cotizar Proveedor*/
     var modalCP = $('#modal-CP');
@@ -213,7 +218,18 @@
         M_btnNMP.click(M_btnNMP_click);
         M_btnEMP.click(M_btnEMP_click);
         M_btnELMP.click(M_btnELMP_click);
+        M_Tabla_MP.on('dblclick', 'tr', function () {
+            // Desmarca las filas seleccionadas
+            M_Tabla_MP.$('tr.selected').removeClass('selected');
+            // Marca la fila actual como seleccionada
+            $(this).addClass('selected');
 
+            var rowSelect = app.GetDataOfDataTable(M_Tabla_MP);
+            if (rowSelect !== null) {
+                ObtenerProveedor(rowSelect);
+                modalMP.modal("hide");
+            }
+        });
 
         //<!-- Modal Cotizar Proveedor  -->
 
@@ -267,7 +283,7 @@
         };
         var mensaje = {
             ruc: {
-                required: "Por favor, ingrese el ruc.",
+                required: "Por favor, ingrese el ruc",
             },
             razonSocial: {
                 required: "Por favor, ingrese la razón social",
@@ -283,12 +299,7 @@
             }
         }
         var fnDoneCallback = function (data) {
-            var id = CotiSofkit.val();
-            //if (id == "0") {
-            //    GuardarCliente();
-            //} else {
-            //    EditarCliente();
-            //} 
+            GuardarCotizacion();
         };
         app.ValidaForm(formDC, rules, mensaje, fnDoneCallback);
     }
@@ -404,10 +415,10 @@
             txtFechaP4.val(item.FecP4);
             LlenarTablaProveedorP4(data);
 
-            //<!-- Control Empresa  --> -- pendiente
-            LlenarTablaKVenta(data);
-            LlenarTablaKCotizacion(data);
-            LlenarTablaKNotaIngreso(data);
+            //<!-- Control Empresa  --> 
+            LlenarTablaKarderVenta(data);
+            LlenarTablaKardexCotizacion(data);
+            LlenarTablaKardexNotaIngreso(data);
 
         };
         app.CallAjax(method, url, data, fnDoneCallback);
@@ -605,39 +616,6 @@
         app.FillDataTable(tablaP4, data, columns, columnDefs, '#tablaP4');
 
     }
-    function LlenarTablaKVenta(data) {
-        var columns = [
-            { data: "item" },
-            { data: "KVVenta" },
-            { data: "KFVenta" },
-            { data: "KCVenta" }
-        ];
-        var columnDefs = [];
-        app.FillDataTable(tablaKV, data, columns, columnDefs, '#tablaKV');
-
-    }
-    function LlenarTablaKCotizacion(data) {
-        var columns = [
-            { data: "item" },
-            { data: "KVCotizacion" },
-            { data: "KFCotizacion" },
-            { data: "KCCotizacion" }
-        ];
-        var columnDefs = [];
-        app.FillDataTable(tablaKC, data, columns, columnDefs, '#tablaKC');
-
-    }
-    function LlenarTablaKNotaIngreso(data) {
-        var columns = [
-            { data: "item" },
-            { data: "KVNotaIngreso" },
-            { data: "KFNotaIngreso" },
-            { data: "KCNotaIngreso" }
-        ];
-        var columnDefs = [];
-        app.FillDataTable(tablaKNI, data, columns, columnDefs, '#tablaKNI');
-
-    }
     function CargandoDatosControlEmpresa(data) {
         var dataKarderVenta = { Data: [] };
         var dataKardexCotizacion = { Data: [] };
@@ -708,7 +686,7 @@
         // Cuando todas las consultas AJAX hayan terminado, resuelve la promesa
         $.when.apply($, deferreds).then(function () {
             //console.log("Todas las consultas AJAX y el bucle han terminado");
-
+            debugger;
             LlenarTablaKarderVenta(dataKarderVenta);
             LlenarTablaKardexCotizacion(dataKardexCotizacion);
             LlenarTablaKardexNotaIngreso(KardexNotaIngreso);
@@ -731,6 +709,152 @@
             app.Message.Info("Aviso", "Por favor, ingrese un cliente, fecha y moneda para poder agregar un articulo.")
         }
     }
+    function GuardarCotizacion() {
+        var dataAR = app.GetValueRowCellOfDataTable(tablaDC);
+        var dataPD = app.GetValueRowCellOfDataTable(tablaPD);
+        var dataP1 = app.GetValueRowCellOfDataTable(tablaP1);
+        var dataP2 = app.GetValueRowCellOfDataTable(tablaP2);
+        var dataP3 = app.GetValueRowCellOfDataTable(tablaP3);
+        var dataP4 = app.GetValueRowCellOfDataTable(tablaP4);
+        var dataKV = app.GetValueRowCellOfDataTable(tablaKV);
+        var dataKC = app.GetValueRowCellOfDataTable(tablaKC);
+        var dataKNI = app.GetValueRowCellOfDataTable(tablaKNI);
+        var arrayCotizacion = [];
+        Array.from(dataAR).forEach(function (v) {
+
+            var obj = {
+                "ID": 0,
+                "idcotizacion": parseInt(CotiSofkit.val()),
+                // cliente 
+                "codcliente": txtRucDC.val(),
+                "Cliente": txtRSDC.val(),
+                "dircliente": txtDDC.val(),
+                "fecha": txtFechaDC.val(),
+                "Moneda": cboMonedaDC.val(),
+                // Dealer
+                "RUCD": hiddenPCD.val(),
+                "NomDealer": txtNombrePD.val(),
+                "fecD": txtFechaPD.val(),
+                // Proveedor 1
+                "RUCP1": hiddenPC1.val(),
+                "NomP1": txtNombreP1.val(),
+                "FecP1": txtFechaP1.val(),
+                // Proveedor 2
+                "RUCP2": hiddenPC2.val(),
+                "NomP2": txtNombreP2.val(),
+                "FecP2": txtFechaP2.val(),
+                // Proveedor 3
+                "RUCP3": hiddenPC3.val(),
+                "NomP3": txtNombreP3.val(),
+                "FecP3": txtFechaP3.val(),
+                // Proveedor 4
+                "RUCP4": hiddenPC4.val(),
+                "NomP4": txtNombreP4.val(),
+                "FecP4": txtFechaP4.val(),
+            };
+
+            // Articulos
+            obj.item = v.item;
+            obj.cant = parseInt(v.cant);
+            obj.Cod = v.Cod;
+            obj.NomArticulo = v.NomArticulo;
+            obj.Precio = parseFloat(v.Precio);
+            obj.MarcaPrecio = v.MarcaPrecio;
+
+            // Dealer
+            var datosPD = dataPD.filter(function (objeto) {
+                return objeto.item === v.item;
+            });
+            if (datosPD.length > 0) {
+                obj.PrecioD = parseFloat(datosPD[0].PrecioD);
+                obj.MarcaD = datosPD[0].MarcaD;
+                obj.ObsD = "";
+            }
+
+            // Proveedor 1 
+            var datosP1 = dataP1.filter(function (objeto) {
+                return objeto.item === v.item;
+            });
+            if (datosP1.length > 0) {
+                obj.PrecioP1 = parseFloat(datosP1[0].PrecioP1);
+                obj.MarcaP1 = datosP1[0].MarcaP1;
+                obj.ObsP1 = "";
+            }
+
+            // Proveedor 2
+            var datosP2 = dataP2.filter(function (objeto) {
+                return objeto.item === v.item;
+            });
+            if (datosP2.length > 0) {
+                obj.PrecioP2 = parseFloat(datosP2[0].PrecioP2);
+                obj.MarcaP2 = datosP2[0].MarcaP2;
+                obj.ObsP2 = "";
+            }
+
+            // Proveedor 3 
+            var datosP3 = dataP3.filter(function (objeto) {
+                return objeto.item === v.item;
+            });
+            if (datosP3.length > 0) {
+                obj.PrecioP3 = parseFloat(datosP3[0].PrecioP3);
+                obj.MarcaP3 = datosP3[0].MarcaP3;
+                obj.ObsP3 = "";
+            }
+
+            // Proveedor 4
+            var datosP4 = dataP4.filter(function (objeto) {
+                return objeto.item === v.item;
+            });
+            if (datosP4.length > 0) {
+                obj.PrecioP4 = parseFloat(datosP4[0].PrecioP4);
+                obj.MarcaP4 = datosP4[0].MarcaP4;
+                obj.ObsP4 = "";
+            }
+
+            // Kardex Venta
+            var datosKV = dataKV.filter(function (objeto) {
+                return objeto.item === v.item;
+            });
+            if (datosKV.length > 0) {
+                obj.KVVenta = parseFloat(datosKV[0].KVVenta);
+                obj.KCVenta = datosKV[0].KCVenta
+                obj.KFVenta = datosKV[0].KFVenta
+            }
+
+
+            // Kardex Cotizacion
+            var datosKC = dataKC.filter(function (objeto) {
+                return objeto.item === v.item;
+            });
+            if (datosKC.length > 0) {
+                obj.KVCotizacion = parseFloat(datosKC[0].KVCotizacion);
+                obj.KCCotizacion = datosKC[0].KCCotizacion
+                obj.KFCotizacion = datosKC[0].KFCotizacion
+            }
+
+            // Kardex Ingreso
+            var datosKNI = dataKNI.filter(function (objeto) {
+                return objeto.item === v.item;
+            });
+            if (datosKNI.length > 0) {
+                obj.KVNotaIngreso = parseFloat(datosKNI[0].KVNotaIngreso);
+                obj.KCNotaIngreso = datosKNI[0].KCNotaIngreso
+                obj.KFNotaIngreso = datosKNI[0].KFNotaIngreso
+            }
+
+            arrayCotizacion.push(obj);
+        });
+
+        var url = "Cotizador/GuardarCotizacion";
+        var method = 'POST';
+        var data = { cotizaciones: arrayCotizacion };
+        var fnDoneCallback = function (data) {
+            app.Message.Success("Grabar", Message.GuardarSuccess, "Aceptar", null);
+        };
+        app.CallAjax(method, url, data, fnDoneCallback);
+    }
+
+
 
     // Regla 
     function btnVR_click() {
@@ -775,23 +899,19 @@
     //<!-- Proveedores  -->
     //Proveedor Dealer
     function btnBD_click() {
-        AbrirModalProveedores();
+        AbrirModalProveedores("D");
     }
-
     function btnBP1_click() {
-        AbrirModalProveedores();
+        AbrirModalProveedores("P1");
     }
-
     function btnBP2_click() {
-        AbrirModalProveedores();
+        AbrirModalProveedores("P2");
     }
-
     function btnBP3_click() {
-        AbrirModalProveedores();
+        AbrirModalProveedores("P3");
     }
-
     function btnBP4_click() {
-        AbrirModalProveedores();
+        AbrirModalProveedores("P4");
     }
 
     //<!-- Control Empresa  -->
@@ -802,12 +922,14 @@
         return app.CallAjax(method, url, data, fnDoneCallback);
     }
     function LlenarTablaKarderVenta(data) {
+
         var columns = [
             { data: "item" },
-            { data: "PRECIO" },
-            { data: "FECHA" },
-            { data: "CLIENTE" }
+            { data: "KVVenta" },
+            { data: "KFVenta" },
+            { data: "KCVenta" }
         ];
+         
         var columnDefs = [
             {
                 "targets": [2],
@@ -826,12 +948,13 @@
         return app.CallAjax(method, url, data, fnDoneCallback);
     }
     function LlenarTablaKardexCotizacion(data) {
+
         var columns = [
             { data: "item" },
-            { data: "PRECIO" },
-            { data: "FECHA" },
-            { data: "CLIENTE" }
-        ];
+            { data: "KVCotizacion" },
+            { data: "KFCotizacion" },
+            { data: "KCCotizacion" }
+        ]; 
         var columnDefs = [
             {
                 "targets": [2],
@@ -852,10 +975,11 @@
     function LlenarTablaKardexNotaIngreso(data) {
         var columns = [
             { data: "item" },
-            { data: "PRECIO" },
-            { data: "FECHA" },
-            { data: "CLIENTE" }
+            { data: "KVNotaIngreso" },
+            { data: "KFNotaIngreso" },
+            { data: "KCNotaIngreso" }
         ];
+         
         var columnDefs = [
             {
                 "targets": [2],
@@ -1072,9 +1196,9 @@
                 LlenarTablaProveedorP2(DataCotizacion);
                 LlenarTablaProveedorP3(DataCotizacion);
                 LlenarTablaProveedorP4(DataCotizacion);
-                LlenarTablaKVenta(DataCotizacion);
-                LlenarTablaKCotizacion(DataCotizacion);
-                LlenarTablaKNotaIngreso(DataCotizacion);
+                LlenarTablaKarderVenta(DataCotizacion);
+                LlenarTablaKardexCotizacion(DataCotizacion);
+                LlenarTablaKardexNotaIngreso(DataCotizacion);
             }).catch(function (error) {
                 /* debugger;*/
                 // El código en caso de error
@@ -1086,8 +1210,6 @@
         app.Message.Confirm("Confirmar", "¿Estas seguro de eliminar el registro?", "Aceptar", "Cancelar", fnAceptarCallback);
 
     }
-
-
 
 
     //<!--Modal Manteminiento de Articulos-- > 
@@ -1145,18 +1267,18 @@
     }
     function M_btnELMP_click() {
     }
-
-    function AbrirModalProveedores() {
+    function AbrirModalProveedores(tipo) {
         var ruc = txtRucDC.val();
         if (ruc != "") {
             M_txtBMP.val('');
             modalMP.modal("show");
+            hiddenMP.val(tipo)
         } else {
             app.Message.Info("Aviso", "Por favor, ingrese un cliente para poder agregar un articulo.")
         }
     }
     function ListarProveedores() {
-        var url = "Cotizador/ListarCliente";
+        var url = "Cotizador/ListarProveedores";
         var method = 'GET';
         var data = {};
         var fnDoneCallback = function (data) {
@@ -1177,6 +1299,25 @@
         };
         app.CallAjax(method, url, data, fnDoneCallback);
 
+    }
+    function ObtenerProveedor(item) {
+        var tipoProveedor = hiddenMP.val();
+        if (tipoProveedor == "D") {
+            hiddenPCD.val(item.CODIGO);
+            txtNombrePD.val(item.RAZONSOCIAL)
+        } else if (tipoProveedor == "P1") {
+            hiddenPC1.val(item.CODIGO);
+            txtNombreP1.val(item.RAZONSOCIAL)
+        } else if (tipoProveedor == "P2") {
+            hiddenPC2.val(item.CODIGO);
+            txtNombreP2.val(item.RAZONSOCIAL)
+        } else if (tipoProveedor == "P3") {
+            hiddenPC3.val(item.CODIGO);
+            txtNombreP3.val(item.RAZONSOCIAL)
+        } else if (tipoProveedor == "P4") {
+            hiddenPC4.val(item.CODIGO);
+            txtNombreP4.val(item.RAZONSOCIAL)
+        }
     }
 
     //<!-- Modal Cotizar Proveedor  -->

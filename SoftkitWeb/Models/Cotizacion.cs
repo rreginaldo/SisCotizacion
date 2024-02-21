@@ -2,15 +2,17 @@
 {
     public class Cotizacion
     {
+        public int? ID { get; set; }
+        public int? idcotizacion { get; set; }
         public string? codcliente { get; set; }
         public string? Cliente { get; set; }
         public string? dircliente { get; set; }
+        public string? Moneda { get; set; }
         public string? item { get; set; }
         public int? cant { get; set; }
         public string? Cod { get; set; }
         public string? NomArticulo { get; set; }
         public string? fecha { get; set; }
-        public string? Moneda { get; set; }
         public double Precio { get; set; }
         public string? MarcaPrecio { get; set; }
         public string? RUCD { get; set; }
@@ -43,6 +45,7 @@
         public double PrecioP4 { get; set; }
         public string? MarcaP4 { get; set; }
         public string? ObsP4 { get; set; }
+        public string? usuario { get; set; }
         public double KVVenta { get; set; }
         public string? KFVenta { get; set; }
         public string? KCVenta { get; set; }

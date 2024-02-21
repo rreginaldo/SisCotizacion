@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RESTAPI_CORE.Modelos;
+using SoftkitWeb.Models;
 using SoftkitWeb.Utilitarios;
-
+ 
 namespace SoftkitWeb.Controllers
 {
     public class CotizadorController : Controller
@@ -30,7 +31,6 @@ namespace SoftkitWeb.Controllers
 
         #endregion
 
-
         #region Cliente
         [HttpGet]
         public async Task<IActionResult> ListarCliente()
@@ -57,7 +57,6 @@ namespace SoftkitWeb.Controllers
         }
 
         #endregion
-
 
         #region Cotizacion
 
@@ -89,7 +88,7 @@ namespace SoftkitWeb.Controllers
         public async Task<IActionResult> KardexVenta(string codigo, string codcliente)
         {
             var apiUrl = string.Format("Cotizacion/KardexVenta?codigo={0}&codcliente={1}", codigo, codcliente);
-            var result = await _metodosApis.GetAsync<Response<List<KardexCoti>>>(apiUrl);
+            var result = await _metodosApis.GetAsync<Response<List<KardexVenta>>>(apiUrl);
             return Json(result);
         }
 
@@ -97,7 +96,24 @@ namespace SoftkitWeb.Controllers
         public async Task<IActionResult> KardexNotaIngreso(string codigo, string codcliente)
         {
             var apiUrl = string.Format("Cotizacion/KardexNotaIngreso?codigo={0}&codcliente={1}", codigo, codcliente);
-            var result = await _metodosApis.GetAsync<Response<List<KardexCoti>>>(apiUrl);
+            var result = await _metodosApis.GetAsync<Response<List<KardexNotaIngreso>>>(apiUrl);
+            return Json(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SecuenciaCoti(int codigo)
+        {
+            var apiUrl = string.Format("Cotizacion/SecuenciaCoti?codigo={0}", codigo);
+            var result = await _metodosApis.GetAsync<Response<int>>(apiUrl);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GuardarCotizacion(List<Cotizacion> cotizaciones)
+        {
+            cotizaciones.ForEach(x => x.usuario = "David"); 
+            var apiUrl = "Cotizacion/Guardar";
+            var result = await _metodosApis.PostAsync<Response<string>>(apiUrl, cotizaciones);
             return Json(result);
         }
 
@@ -142,10 +158,19 @@ namespace SoftkitWeb.Controllers
             var apiUrl = string.Format("Producto/Eliminar/{0}", idProducto);
             var result = await _metodosApis.DeleteAsync<Response<string>>(apiUrl);
             return Json(result);
-        } 
+        }
 
         #endregion
 
+        #region Proveedores 
+        [HttpGet]
+        public async Task<IActionResult> ListarProveedores()
+        {
+            var apiUrl = "Proveedor/Lista";
+            var result = await _metodosApis.GetAsync<Response<List<Proveedor>>>(apiUrl);
+            return Json(result);
+        }
+        #endregion
 
         #region Regla
 
