@@ -111,7 +111,7 @@ namespace SoftkitWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> GuardarCotizacion(List<Cotizacion> cotizaciones)
         {
-            cotizaciones.ForEach(x => x.usuario = "David"); 
+            cotizaciones.ForEach(x => x.usuario = User.Identity.Name); 
             var apiUrl = "Cotizacion/Guardar";
             var result = await _metodosApis.PostAsync<Response<string>>(apiUrl, cotizaciones);
             return Json(result);

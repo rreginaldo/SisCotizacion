@@ -250,7 +250,7 @@
     }
 
     function EditarCeldasTabla() {
-        app.EditarTable(tablaDC);
+        //app.EditarTable(tablaDC);
         app.EditarTable(tablaPD);
         app.EditarTable(tablaP1);
         app.EditarTable(tablaP2);
