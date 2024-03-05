@@ -102,7 +102,7 @@
 
         // Funciones iniciales
         //SetActiveMenu();
-    //    ModalDraggable();
+        //    ModalDraggable();
     }
 
     function SetActiveMenu() {
@@ -328,7 +328,7 @@
 
             cantidadLlamadas++;
 
-            if (cantidadLlamadas == 1) {  
+            if (cantidadLlamadas == 1) {
                 Loading.Show(messageWait);
             }
 
@@ -361,7 +361,7 @@
                 if (cantidadLlamadas == 0) {
                     // Ocultar la modal de carga después de un pequeño retraso
                     setTimeout(function () {
-                        Loading.Hide(); 
+                        Loading.Hide();
                     }, 500); // 500 milisegundos (0.5 segundos) de retraso
                 }
                 if (fnAlwaysCallback != null && typeof (fnAlwaysCallback) !== "undefined") {
@@ -857,7 +857,7 @@
         });
     }
 
-    function EditarTable(selector) {
+    function EditarTable(selector, fnBlur) {
         selector.on('click', 'tbody td.editable', function () {  // Habilitar la edición en línea al hacer clic en una celda
             $(this).attr('contenteditable', true);
         }).on('keypress', 'tbody td.editable[data-type="numeric"]', function (e) { // Validar la entrada para la primera columna (solo números)
@@ -874,6 +874,12 @@
             var newData = $(this).text();
             table.cell(this).data(newData).draw(); // Guardar los cambios en la tabla DataTables
             $(this).removeAttr('contenteditable'); // Deshabilitar la edición en línea
+
+            // adicionales  Obtener el número de fila
+            var cell = table.cell($(this));
+            var rowIndex = cell.index().row;
+            var rowData = table.row(rowIndex).data();
+             fnBlur(rowData);
         });
     }
 

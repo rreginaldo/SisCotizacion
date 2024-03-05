@@ -129,6 +129,9 @@
     var modalR = $('#modal-R');
     var M_Tabla_R = $('#M_Tabla_R');
 
+    /*  Variables Constantes */
+    var DataCotizacion = { Data: [] };
+    var DataReglas = [];
     var Message = {
         ObtenerTipoBusqueda: "Obteniendo los tipos de busqueda, Por favor espere...",
         GuardarSuccess: "Los datos se guardaron satisfactoriamente",
@@ -251,12 +254,116 @@
 
     function EditarCeldasTabla() {
         //app.EditarTable(tablaDC);
-        app.EditarTable(tablaPD);
-        app.EditarTable(tablaP1);
-        app.EditarTable(tablaP2);
-        app.EditarTable(tablaP3);
-        app.EditarTable(tablaP4);
+
+        //cargando reglas 
+        var fnDoneCallback = function (data) {
+            DataReglas = data.Data;
+        };
+        ObtenerReglas(fnDoneCallback);
+
+        var fnBlurD = function (fila) {
+            CalculandoReglas(fila);
+        }
+        app.EditarTable(tablaPD, fnBlurD);
+        var fnBlurP1 = function (fila) {
+            CalculandoReglas(fila);
+        }
+        app.EditarTable(tablaP1, fnBlurP1);
+        var fnBlurP2 = function (fila) {
+            CalculandoReglas(fila);
+        }
+        app.EditarTable(tablaP2, fnBlurP2);
+        var fnBlurP3 = function (fila) {
+            CalculandoReglas(fila);
+        }
+        app.EditarTable(tablaP3, fnBlurP3);
+        var fnBlurP4 = function (fila) {
+            CalculandoReglas(fila);
+        }
+        app.EditarTable(tablaP4, fnBlurP4);
     }
+
+    // Calculando reglas
+    function CalculandoReglas(fila) {
+        var item = fila.item;
+        var cantidad = fila.cant;
+        var descripciones = {
+            PrecioD: fila.MarcaD,
+            PrecioP1: fila.MarcaP1,
+            PrecioP2: fila.MarcaP2,
+            PrecioP3: fila.MarcaP3,
+            PrecioP4: fila.MarcaP4
+        };
+        var precios = {
+            PrecioD: parseFloat(fila.PrecioD),
+            PrecioP1: parseFloat(fila.PrecioP1),
+            PrecioP2: parseFloat(fila.PrecioP2),
+            PrecioP3: parseFloat(fila.PrecioP3),
+            PrecioP4: parseFloat(fila.PrecioP4),
+        };
+
+        // Filtrar los precios para excluir los valores menores o iguales a 0
+        var preciosFiltrados = Object.values(precios).filter(function (valor) {
+            return valor > 0;
+        });
+
+        // Obtener el precio mínimo mayor que 0
+        var precioMinimo = Math.min(...preciosFiltrados);
+
+        // Encontrar la clave correspondiente al precio mínimo
+        var clavePrecioMinimo = Object.keys(precios).find(function (clave) {
+            return precios[clave] === precioMinimo;
+        });
+
+        // Obtener la descripción correspondiente al precio mínimo
+        var descripcionMinima = descripciones[clavePrecioMinimo];
+
+
+        var PrecioCotizado = 0;
+        // Iterar sobre cada regla
+        DataReglas.forEach(function (regla) {
+            // Evaluar si se cumple la regla
+            var cumpleRegla = false;
+            if (regla.signoA === "=" && regla.signoB === "<") {
+                cumpleRegla = precioMinimo === regla.ValorUnit && cantidad < regla.cant;
+            } else if (regla.signoA === "<" && regla.signoB === "<") {
+                cumpleRegla = precioMinimo < regla.ValorUnit && cantidad < regla.cant;
+            } else if (regla.signoA === "<" && regla.signoB === ">") {
+                cumpleRegla = precioMinimo < regla.ValorUnit && cantidad > regla.cant;
+            } else if (regla.signoA === ">" && regla.signoB === "<") {
+                cumpleRegla = precioMinimo > regla.ValorUnit && cantidad < regla.cant;
+            } else if (regla.signoA === ">" && regla.signoB === ">") {
+                cumpleRegla = precioMinimo > regla.ValorUnit && cantidad > regla.cant;
+            }
+
+            // Si se cumple la regla, actualizamos el precio mínimo y la cantidad según la regla
+            if (cumpleRegla) {
+                PrecioCotizado = precioMinimo * regla.factor;
+            }
+        });
+
+        //console.log("Cantidad:", cantidad); 
+        //console.log("El precio mínimo es:", precioMinimo);
+        //console.log("Su descripción es:", descripcionMinima);
+        //console.log("PrecioCotizado:", PrecioCotizado);
+
+
+        var tabla = tablaDC.DataTable();
+        // Iterar sobre cada fila de la tabla
+        tabla.rows().every(function () {
+            var data = this.data();
+            if (data.item === item) {
+                this.cell({ row: this.index(), column: 4 }).data(PrecioCotizado);
+                this.cell({ row: this.index(), column: 5 }).data(descripcionMinima);
+            }
+        });
+
+        // Redibujar la tabla
+        tabla.draw();
+
+    }
+
+
 
     // Cliente 
     function btnCB_click() {
@@ -686,7 +793,7 @@
         // Cuando todas las consultas AJAX hayan terminado, resuelve la promesa
         $.when.apply($, deferreds).then(function () {
             //console.log("Todas las consultas AJAX y el bucle han terminado");
-            debugger;
+            //debugger;
             LlenarTablaKarderVenta(dataKarderVenta);
             LlenarTablaKardexCotizacion(dataKardexCotizacion);
             LlenarTablaKardexNotaIngreso(KardexNotaIngreso);
@@ -851,32 +958,32 @@
         var fnDoneCallback = function (data) {
             app.Message.Success("Grabar", Message.GuardarSuccess, "Aceptar", null);
         };
-        app.CallAjax(method, url, data, fnDoneCallback);
+        app.CallAjax(method, url, data, fnDoneCallback); 
     }
 
 
 
     // Regla 
     function btnVR_click() {
-        var url = "Cotizador/ObtenerReglas";
-        var method = 'GET';
-        var data = {};
+        modalR.modal('show');
+        LlenarTablaReglas();
+    }
+    function LlenarTablaReglas() {
         var fnDoneCallback = function (data) {
-            modalR.modal('show');
             var columns = [
                 { data: "Nombre" },
-                { data: "Dealer" },
-                { data: "Alternativo" },
-                { data: "Regla1" },
-                { data: "NOExecede" },
-                { data: "valmin" },
-                { data: "valmax" },
-                { data: "ID" }
+                { data: "signoA" },
+                { data: "ValorUnit" },
+                { data: "signoB" },
+                { data: "cant" },
+                { data: "factor" },
+                { data: "idR" }
             ];
             var columnDefs = [
 
                 {
-                    "targets": [7],
+                    "targets": [6],
+                    "visible": false,
                     'render': function (data, type, full, meta) {
                         var htmlIcheck = '<div class="icheck-primary d-inline" >' +
                             '<input type="checkbox" id="checkbox' + full.ID + '" checked="1">' +
@@ -891,10 +998,16 @@
 
             ];
             app.FillDataTable(M_Tabla_R, data, columns, columnDefs, '#M_Tabla_R');
-
         };
+        ObtenerReglas(fnDoneCallback);
+    }
+    function ObtenerReglas(fnDoneCallback) {
+        var url = "Cotizador/ObtenerReglas";
+        var method = 'GET';
+        var data = {};
         app.CallAjax(method, url, data, fnDoneCallback);
     }
+
 
     //<!-- Proveedores  -->
     //Proveedor Dealer
@@ -929,7 +1042,7 @@
             { data: "KFVenta" },
             { data: "KCVenta" }
         ];
-         
+
         var columnDefs = [
             {
                 "targets": [2],
@@ -954,7 +1067,7 @@
             { data: "KVCotizacion" },
             { data: "KFCotizacion" },
             { data: "KCCotizacion" }
-        ]; 
+        ];
         var columnDefs = [
             {
                 "targets": [2],
@@ -979,7 +1092,7 @@
             { data: "KFNotaIngreso" },
             { data: "KCNotaIngreso" }
         ];
-         
+
         var columnDefs = [
             {
                 "targets": [2],
@@ -1035,7 +1148,6 @@
     //<!-- Modal Buscar Cliente -->
 
     //<!-- Modal Agregar Articulos  -->
-    var DataCotizacion = { Data: [] };
     function M_btnUAP_click() {
         modalMA.modal("show");
         ListarArticulos();
