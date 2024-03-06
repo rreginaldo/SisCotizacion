@@ -353,7 +353,7 @@
         tabla.rows().every(function () {
             var data = this.data();
             if (data.item === item) {
-                this.cell({ row: this.index(), column: 4 }).data(PrecioCotizado);
+                this.cell({ row: this.index(), column: 4 }).data(PrecioCotizado.toFixed(2));
                 this.cell({ row: this.index(), column: 5 }).data(descripcionMinima);
             }
         });
@@ -468,6 +468,14 @@
 
         ReadOnlyControles(false);
         CotiSofkit.val("0")
+
+        var fechaHoy = new Date();
+        txtFechaDC.val(fechaHoy.toLocaleDateString()); 
+        txtFechaPD.val(fechaHoy.toLocaleDateString()); 
+        txtFechaP1.val(fechaHoy.toLocaleDateString());
+        txtFechaP2.val(fechaHoy.toLocaleDateString());
+        txtFechaP3.val(fechaHoy.toLocaleDateString());
+        txtFechaP4.val(fechaHoy.toLocaleDateString());
 
         modalBCL.modal("hide");
     }
@@ -817,148 +825,174 @@
         }
     }
     function GuardarCotizacion() {
-        var dataAR = app.GetValueRowCellOfDataTable(tablaDC);
-        var dataPD = app.GetValueRowCellOfDataTable(tablaPD);
-        var dataP1 = app.GetValueRowCellOfDataTable(tablaP1);
-        var dataP2 = app.GetValueRowCellOfDataTable(tablaP2);
-        var dataP3 = app.GetValueRowCellOfDataTable(tablaP3);
-        var dataP4 = app.GetValueRowCellOfDataTable(tablaP4);
-        var dataKV = app.GetValueRowCellOfDataTable(tablaKV);
-        var dataKC = app.GetValueRowCellOfDataTable(tablaKC);
-        var dataKNI = app.GetValueRowCellOfDataTable(tablaKNI);
-        var arrayCotizacion = [];
-        Array.from(dataAR).forEach(function (v) {
 
-            var obj = {
-                "ID": 0,
-                "idcotizacion": parseInt(CotiSofkit.val()),
-                // cliente 
-                "codcliente": txtRucDC.val(),
-                "Cliente": txtRSDC.val(),
-                "dircliente": txtDDC.val(),
-                "fecha": txtFechaDC.val(),
-                "Moneda": cboMonedaDC.val(),
+        var fnAceptarCallback = function () {
+            var dataAR = app.GetValueRowCellOfDataTable(tablaDC);
+            var dataPD = app.GetValueRowCellOfDataTable(tablaPD);
+            var dataP1 = app.GetValueRowCellOfDataTable(tablaP1);
+            var dataP2 = app.GetValueRowCellOfDataTable(tablaP2);
+            var dataP3 = app.GetValueRowCellOfDataTable(tablaP3);
+            var dataP4 = app.GetValueRowCellOfDataTable(tablaP4);
+            var dataKV = app.GetValueRowCellOfDataTable(tablaKV);
+            var dataKC = app.GetValueRowCellOfDataTable(tablaKC);
+            var dataKNI = app.GetValueRowCellOfDataTable(tablaKNI);
+            var arrayCotizacion = [];
+            Array.from(dataAR).forEach(function (v) {
+
+                var obj = {
+                    "ID": 0,
+                    "idcotizacion": parseInt(CotiSofkit.val()),
+                    // cliente 
+                    "codcliente": txtRucDC.val(),
+                    "Cliente": txtRSDC.val(),
+                    "dircliente": txtDDC.val(),
+                    "fecha": txtFechaDC.val(),
+                    "Moneda": cboMonedaDC.val(),
+                    // Dealer
+                    "RUCD": hiddenPCD.val(),
+                    "NomDealer": txtNombrePD.val(),
+                    "fecD": txtFechaPD.val(),
+                    // Proveedor 1
+                    "RUCP1": hiddenPC1.val(),
+                    "NomP1": txtNombreP1.val(),
+                    "FecP1": txtFechaP1.val(),
+                    // Proveedor 2
+                    "RUCP2": hiddenPC2.val(),
+                    "NomP2": txtNombreP2.val(),
+                    "FecP2": txtFechaP2.val(),
+                    // Proveedor 3
+                    "RUCP3": hiddenPC3.val(),
+                    "NomP3": txtNombreP3.val(),
+                    "FecP3": txtFechaP3.val(),
+                    // Proveedor 4
+                    "RUCP4": hiddenPC4.val(),
+                    "NomP4": txtNombreP4.val(),
+                    "FecP4": txtFechaP4.val(),
+                };
+
+                // Articulos
+                obj.item = v.item;
+                obj.cant = parseInt(v.cant);
+                obj.Cod = v.Cod;
+                obj.NomArticulo = v.NomArticulo;
+                obj.Precio = parseFloat(v.Precio);
+                obj.MarcaPrecio = v.MarcaPrecio;
+
                 // Dealer
-                "RUCD": hiddenPCD.val(),
-                "NomDealer": txtNombrePD.val(),
-                "fecD": txtFechaPD.val(),
-                // Proveedor 1
-                "RUCP1": hiddenPC1.val(),
-                "NomP1": txtNombreP1.val(),
-                "FecP1": txtFechaP1.val(),
+                var datosPD = dataPD.filter(function (objeto) {
+                    return objeto.item === v.item;
+                });
+                if (datosPD.length > 0) {
+                    obj.PrecioD = parseFloat(datosPD[0].PrecioD);
+                    obj.MarcaD = datosPD[0].MarcaD;
+                    obj.ObsD = "";
+                }
+
+                // Proveedor 1 
+                var datosP1 = dataP1.filter(function (objeto) {
+                    return objeto.item === v.item;
+                });
+                if (datosP1.length > 0) {
+                    obj.PrecioP1 = parseFloat(datosP1[0].PrecioP1);
+                    obj.MarcaP1 = datosP1[0].MarcaP1;
+                    obj.ObsP1 = "";
+                }
+
                 // Proveedor 2
-                "RUCP2": hiddenPC2.val(),
-                "NomP2": txtNombreP2.val(),
-                "FecP2": txtFechaP2.val(),
-                // Proveedor 3
-                "RUCP3": hiddenPC3.val(),
-                "NomP3": txtNombreP3.val(),
-                "FecP3": txtFechaP3.val(),
+                var datosP2 = dataP2.filter(function (objeto) {
+                    return objeto.item === v.item;
+                });
+                if (datosP2.length > 0) {
+                    obj.PrecioP2 = parseFloat(datosP2[0].PrecioP2);
+                    obj.MarcaP2 = datosP2[0].MarcaP2;
+                    obj.ObsP2 = "";
+                }
+
+                // Proveedor 3 
+                var datosP3 = dataP3.filter(function (objeto) {
+                    return objeto.item === v.item;
+                });
+                if (datosP3.length > 0) {
+                    obj.PrecioP3 = parseFloat(datosP3[0].PrecioP3);
+                    obj.MarcaP3 = datosP3[0].MarcaP3;
+                    obj.ObsP3 = "";
+                }
+
                 // Proveedor 4
-                "RUCP4": hiddenPC4.val(),
-                "NomP4": txtNombreP4.val(),
-                "FecP4": txtFechaP4.val(),
+                var datosP4 = dataP4.filter(function (objeto) {
+                    return objeto.item === v.item;
+                });
+                if (datosP4.length > 0) {
+                    obj.PrecioP4 = parseFloat(datosP4[0].PrecioP4);
+                    obj.MarcaP4 = datosP4[0].MarcaP4;
+                    obj.ObsP4 = "";
+                }
+
+                // Kardex Venta
+                if (dataKV != null) {
+                    var datosKV = dataKV.filter(function (objeto) {
+                        return objeto.item === v.item;
+                    });
+                    if (datosKV.length > 0) {
+                        obj.KVVenta = parseFloat(datosKV[0].KVVenta);
+                        obj.KCVenta = datosKV[0].KCVenta
+                        obj.KFVenta = datosKV[0].KFVenta
+                    }
+                } else {
+                    obj.KVVenta = 0;
+                    obj.KCVenta = "";
+                    obj.KFVenta = "";
+                }
+
+
+
+                // Kardex Cotizacion
+                if (dataKC != null) {
+                    var datosKC = dataKC.filter(function (objeto) {
+                        return objeto.item === v.item;
+                    });
+                    if (datosKC.length > 0) {
+                        obj.KVCotizacion = parseFloat(datosKC[0].KVCotizacion);
+                        obj.KCCotizacion = datosKC[0].KCCotizacion
+                        obj.KFCotizacion = datosKC[0].KFCotizacion
+                    }
+                } else {
+                    obj.KVCotizacion = 0;
+                    obj.KCCotizacion = "";
+                    obj.KFCotizacion = "";
+                }
+
+                // Kardex Ingreso
+                if (dataKC != null) {
+                    var datosKNI = dataKNI.filter(function (objeto) {
+                        return objeto.item === v.item;
+                    });
+                    if (datosKNI.length > 0) {
+                        obj.KVNotaIngreso = parseFloat(datosKNI[0].KVNotaIngreso);
+                        obj.KCNotaIngreso = datosKNI[0].KCNotaIngreso
+                        obj.KFNotaIngreso = datosKNI[0].KFNotaIngreso
+                    }
+                } else {
+                    obj.KVNotaIngreso = 0
+                    obj.KCNotaIngreso = ""
+                    obj.KFNotaIngreso = ""
+                }
+
+                arrayCotizacion.push(obj);
+            });
+            debugger
+            var url = "Cotizador/GuardarCotizacion";
+            var method = 'POST';
+            var data = { cotizaciones: arrayCotizacion };
+            var fnDoneCallback = function (data) {
+                app.Message.Success("Grabar", Message.GuardarSuccess, "Aceptar", null);
             };
+            app.CallAjax(method, url, data, fnDoneCallback);
 
-            // Articulos
-            obj.item = v.item;
-            obj.cant = parseInt(v.cant);
-            obj.Cod = v.Cod;
-            obj.NomArticulo = v.NomArticulo;
-            obj.Precio = parseFloat(v.Precio);
-            obj.MarcaPrecio = v.MarcaPrecio;
-
-            // Dealer
-            var datosPD = dataPD.filter(function (objeto) {
-                return objeto.item === v.item;
-            });
-            if (datosPD.length > 0) {
-                obj.PrecioD = parseFloat(datosPD[0].PrecioD);
-                obj.MarcaD = datosPD[0].MarcaD;
-                obj.ObsD = "";
-            }
-
-            // Proveedor 1 
-            var datosP1 = dataP1.filter(function (objeto) {
-                return objeto.item === v.item;
-            });
-            if (datosP1.length > 0) {
-                obj.PrecioP1 = parseFloat(datosP1[0].PrecioP1);
-                obj.MarcaP1 = datosP1[0].MarcaP1;
-                obj.ObsP1 = "";
-            }
-
-            // Proveedor 2
-            var datosP2 = dataP2.filter(function (objeto) {
-                return objeto.item === v.item;
-            });
-            if (datosP2.length > 0) {
-                obj.PrecioP2 = parseFloat(datosP2[0].PrecioP2);
-                obj.MarcaP2 = datosP2[0].MarcaP2;
-                obj.ObsP2 = "";
-            }
-
-            // Proveedor 3 
-            var datosP3 = dataP3.filter(function (objeto) {
-                return objeto.item === v.item;
-            });
-            if (datosP3.length > 0) {
-                obj.PrecioP3 = parseFloat(datosP3[0].PrecioP3);
-                obj.MarcaP3 = datosP3[0].MarcaP3;
-                obj.ObsP3 = "";
-            }
-
-            // Proveedor 4
-            var datosP4 = dataP4.filter(function (objeto) {
-                return objeto.item === v.item;
-            });
-            if (datosP4.length > 0) {
-                obj.PrecioP4 = parseFloat(datosP4[0].PrecioP4);
-                obj.MarcaP4 = datosP4[0].MarcaP4;
-                obj.ObsP4 = "";
-            }
-
-            // Kardex Venta
-            var datosKV = dataKV.filter(function (objeto) {
-                return objeto.item === v.item;
-            });
-            if (datosKV.length > 0) {
-                obj.KVVenta = parseFloat(datosKV[0].KVVenta);
-                obj.KCVenta = datosKV[0].KCVenta
-                obj.KFVenta = datosKV[0].KFVenta
-            }
-
-
-            // Kardex Cotizacion
-            var datosKC = dataKC.filter(function (objeto) {
-                return objeto.item === v.item;
-            });
-            if (datosKC.length > 0) {
-                obj.KVCotizacion = parseFloat(datosKC[0].KVCotizacion);
-                obj.KCCotizacion = datosKC[0].KCCotizacion
-                obj.KFCotizacion = datosKC[0].KFCotizacion
-            }
-
-            // Kardex Ingreso
-            var datosKNI = dataKNI.filter(function (objeto) {
-                return objeto.item === v.item;
-            });
-            if (datosKNI.length > 0) {
-                obj.KVNotaIngreso = parseFloat(datosKNI[0].KVNotaIngreso);
-                obj.KCNotaIngreso = datosKNI[0].KCNotaIngreso
-                obj.KFNotaIngreso = datosKNI[0].KFNotaIngreso
-            }
-
-            arrayCotizacion.push(obj);
-        });
-
-        var url = "Cotizador/GuardarCotizacion";
-        var method = 'POST';
-        var data = { cotizaciones: arrayCotizacion };
-        var fnDoneCallback = function (data) {
-            app.Message.Success("Grabar", Message.GuardarSuccess, "Aceptar", null);
         };
-        app.CallAjax(method, url, data, fnDoneCallback); 
+
+        app.Message.Confirm("Confirmar", "¿Estas seguro de guarar la cotización?", "Aceptar", "Cancelar", fnAceptarCallback);
+
     }
 
 
@@ -1443,7 +1477,7 @@
         var numeroAleatorio = Math.floor(Math.random() * 10000);
 
         // Formatear el número para que tenga 4 dígitos
-        var correlativo = ("000" + numeroAleatorio).slice(-4);
+        var correlativo = ("000" + numeroAleatorio).slice(-3);
 
         return correlativo;
     }
