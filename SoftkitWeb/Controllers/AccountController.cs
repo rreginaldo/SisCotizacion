@@ -2,13 +2,23 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RESTAPI_CORE.Modelos;
 using SoftkitWeb.Models;
+using SoftkitWeb.Utilitarios;
 using System.Security.Claims;
 
 namespace SoftkitWeb.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly ILogger<AccountController> _logger;
+        private readonly MetodosApis _metodosApis;
+
+        public AccountController(ILogger<AccountController> logger, MetodosApis metodosApis)
+        {
+            _logger = logger;
+            _metodosApis = metodosApis;
+        }
 
 
         [HttpGet]
@@ -25,20 +35,19 @@ namespace SoftkitWeb.Controllers
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             if (ModelState.IsValid)
-            {
-                var token = "dasdasdsad";// await _authApiClient.LoginAsync(model.Username, model.Password);
+            { 
+                var apiUrl = $"Usuario/LoginUsuario?correo={model.UserName}&clave={model.Password}";
+                var token = await _metodosApis.GetAsync<Response<Usuario>>(apiUrl);
+
                 if (token != null)
                 {
+                    var credenciales = token.Data;
                     // Guardar el token en las cookies
                     var claims = new List<Claim>
                     {
-                        // Agregar el claim deseado al token
-                        //new Claim("CustomClaimName", "CustomClaimValue"),
-                        // También puedes agregar otros claims si es necesario
-                        
-                        new Claim(ClaimTypes.Sid, "1"),
-                        new Claim(ClaimTypes.Name, "David Yupanqui"),
-                        new Claim(ClaimTypes.Role, "Admin") 
+                        new Claim(ClaimTypes.Sid, credenciales.id.ToString() ?? ""),
+                        new Claim(ClaimTypes.Name, credenciales.nombre ?? ""),
+                        new Claim(ClaimTypes.Role, credenciales.rol ?? "")
                      };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -60,10 +69,10 @@ namespace SoftkitWeb.Controllers
             return View(model);
         }
 
-        [HttpGet] 
+        [HttpGet]
         public async Task<IActionResult> Logout()
-        { 
-            await HttpContext.SignOutAsync(); 
+        {
+            await HttpContext.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
 

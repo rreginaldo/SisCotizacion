@@ -4,8 +4,8 @@ namespace SoftkitWeb.Models
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Por favor ingresa tu nombre de usuario.")] 
-        [Display(Name = "Nombre de usuario")]
+        [Required(ErrorMessage = "Por favor ingresa tu correo.")] 
+        [Display(Name = "Correo")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Por favor ingresa tu contraseña.")]
